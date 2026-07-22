@@ -1,3 +1,8 @@
+
+`README.md → How to use`
+
+What is this project and how do I run it quickly?
+
 # applied-ai-petcare-system
 
 ## Table of Contents
@@ -133,3 +138,156 @@ applied-ai-petcare-system/
 ├── tests/
 
 └── requirements.txt
+````
+
+---
+
+# Quick Start
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/username/applied-ai-petcare-system.git
+
+cd applied-ai-petcare-system
+```
+
+---
+
+## 2. Create a Virtual Environment
+
+### Windows
+
+```powershell
+python -m venv .venv
+
+.venv\Scripts\activate
+```
+
+### macOS/Linux
+
+```bash
+python -m venv .venv
+
+source .venv/bin/activate
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+For more detailed setup instructions:
+
+[Setup Guide](docs/setup-guide.md)
+
+---
+
+# Running the Application
+
+## Run the Python application
+
+```bash
+python -m src.main
+```
+
+## Run the Streamlit interface
+
+```bash
+streamlit run src/app.py
+```
+
+---
+
+# Testing
+
+Run all tests:
+
+```bash
+pytest
+```
+
+The test suite covers:
+
+* Core scheduling logic
+* Task management
+* AI components
+* Validation rules
+* Reliability checks
+
+Detailed testing information:
+
+[Testing Documentation](docs/testing.md)
+
+---
+
+# Example Usage
+
+## User Input
+
+```
+I have 30 minutes today.
+My dog needs exercise and medication.
+Create a care plan.
+```
+
+## System Output
+
+```
+Recommended plan:
+
+1. Give medication
+   Reason:
+   - High priority
+   - Health-related task
+
+2. Complete short walk
+   Reason:
+   - Fits remaining time
+   - Supports daily exercise
+
+Confidence score:
+0.87
+```
+
+---
+
+# Documentation
+
+Detailed project documentation:
+
+| Document                                         | Description                             |
+| ------------------------------------------------ | --------------------------------------- |
+| [Workflow](docs/workflow.md)                     | Six-step development workflow           |
+| [Setup Guide](docs/setup-guide.md)               | Detailed installation and configuration |
+| [Architecture](docs/architecture.md)             | System design and data flow             |
+| [Extensions Roadmap](docs/extensions-roadmap.md) | AI feature development plan             |
+| [Testing](docs/testing.md)                       | Testing strategy and evaluation         |
+| [Model Card](docs/model_card.md)                 | Responsible AI documentation            |
+
+---
+
+# Future Improvements
+
+Possible future enhancements:
+
+* Add more pet-care knowledge sources
+* Improve retrieval accuracy
+* Add advanced agent-based planning
+* Improve reliability scoring
+* Add user feedback learning loop
+* Expand evaluation datasets
+
+---
+
+# License
+
+This project is for educational and portfolio purposes.
+
+
+# Navigation
+
+- [Back to Top](#table-of-contents)
