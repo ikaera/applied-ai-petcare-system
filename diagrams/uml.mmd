@@ -1,0 +1,60 @@
+classDiagram
+    %% Replace the placeholders below with your actual classes, attributes, methods, and relationships.
+    %% Keep this file updated so it matches your final implementation.
+
+    class ClassName {
+        +type attribute
+        +method() returnType
+    }
+
+    class AnotherClass {
+        +type attribute
+        +method() returnType
+    }
+
+    ClassName --> AnotherClass : relationship
+
+%% ---- Draft below: PawPal+ classes (Step 3 draft, one pet per owner) ----
+
+classDiagram
+    class Owner {
+        +string name
+        +int available_minutes
+        +List~Pet~ pets
+        +string preferences
+        +add_pet(pet) None
+        +get_all_tasks() list
+    }
+
+    class Pet {
+        +string name
+        +string species
+        +List~Task~ tasks
+        +add_task(task) None
+    }
+
+    class Task {
+        +string title
+        +int duration_minutes
+        +string priority
+        +string category
+        +string frequency
+        +bool completed
+    }
+
+    class PlannedItem {
+        +Task task
+        +string pet_name
+        +bool included
+        +string reason
+    }
+
+    class Scheduler {
+        +generate_plan(owner) List~PlannedItem~
+    }
+
+    Owner "1" o-- "0..*" Pet : manages
+    Pet "1" o-- "0..*" Task : contains
+    Scheduler ..> Owner : retrieves tasks via
+    Scheduler ..> PlannedItem : creates
+    PlannedItem "1" --> "1" Task : wraps
