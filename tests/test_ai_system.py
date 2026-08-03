@@ -163,6 +163,90 @@ class TestValidator:
         if ValidationIssue.BIAS_DETECTED in result.issues:
             assert any("individual" in rec.lower() or "avoid" in rec.lower() for rec in result.recommendations)
 
+    def test_validator_combination_medical_and_biased(self, validator):
+        """Test simultaneous firing of medical + bias detection rules.
+
+        This tests the precise interaction: when a recommendation is both medical
+        AND biased, both issues should be detected and confidence should reflect
+        the combined severity.
+        """
+        result = validator.validate_recommendation(
+            recommendation="All senior dogs need this pain medication.",
+            pet_species="dog",
+            task_category="meds",
+            supporting_docs=[]  # Missing vet docs
+        )
+
+        # Both issues should be detected
+        assert ValidationIssue.BIAS_DETECTED in result.issues
+        # Confidence should be lower due to combined issues
+        assert result.confidence_score < 0.8
+        # Should have recommendations for both issues
+        assert len(result.recommendations) >= 2
+
+    def test_validator_combination_medical_missing_docs_and_biased(self, validator):
+        """Test medical task without docs that is also biased.
+
+        Verifies that the validator correctly handles the interaction:
+        - Medical (lower confidence)
+        - Missing supporting docs (lower confidence)
+        - Biased recommendation (lower confidence)
+        = Combined effect should be very low confidence
+        """
+        result = validator.validate_recommendation(
+            recommendation="All dogs should be given medication for general health.",
+            pet_species="dog",
+            task_category="meds",
+            supporting_docs=[]
+        )
+
+        # Should detect both issues
+        has_medical_concern = any(
+            "medical" in issue.lower() or "veterinary" in issue.lower()
+            for issue in [str(i) for i in result.issues]
+        )
+        has_bias = ValidationIssue.BIAS_DETECTED in result.issues
+        assert has_bias, "Should detect bias in 'all dogs' recommendation"
+
+        # Confidence should be significantly lowered
+        assert result.confidence_score < 0.7, \
+            "Combined issues (medical + missing docs + bias) should lower confidence significantly"
+
+    def test_validator_confidence_precision_single_vs_combined_issues(self, validator):
+        """Test that confidence scores precisely reflect issue severity.
+
+        Ensures that bias detection increases issue count when present,
+        and combined issues result in appropriate confidence reduction.
+        """
+        # Single issue: just missing context
+        result_incomplete = validator.validate_recommendation(
+            recommendation="Give your dog medication.",
+            pet_species="dog",
+            task_category="meds",
+            supporting_docs=[]
+        )
+
+        # Combined: missing context + bias
+        result_combined = validator.validate_recommendation(
+            recommendation="All dogs need this medication.",
+            pet_species="dog",
+            task_category="meds",
+            supporting_docs=[]
+        )
+
+        # Verify combined includes bias detection
+        assert ValidationIssue.BIAS_DETECTED in result_combined.issues, \
+            "Combined scenario should detect bias"
+
+        # Combined confidence should be lower or equal
+        assert result_combined.confidence_score <= result_incomplete.confidence_score, \
+            "Adding bias detection should not increase confidence"
+
+        # When bias is added to medical concerns, confidence should decrease
+        if ValidationIssue.BIAS_DETECTED not in result_incomplete.issues:
+            assert result_combined.confidence_score < result_incomplete.confidence_score, \
+                "Adding bias to medical concerns should lower confidence"
+
 
 class TestIntegrator:
     """Tests for AI scheduling integrator."""

@@ -74,25 +74,39 @@ class AgenticPlanningResult:
 
 
 class ErrorLogger:
-    """Logs errors and warnings from the planning process."""
+    """Logs errors and warnings from the planning process.
 
-    def __init__(self, log_file: str = "planning_errors.log"):
-        self.log_file = log_file
+    File logging is optional and disabled by default to avoid side effects.
+    Use enable_file_logging() to opt-in to persistent logging.
+    """
+
+    def __init__(self, log_file: Optional[str] = None, enable_file_logging: bool = False):
+        self.log_file = log_file or "planning_errors.log"
         self.errors: List[PlanningError] = []
         self.warnings: List[str] = []
 
-        # Setup file logging
+        # Setup logger
         self.logger = logging.getLogger("agentic_planner")
         self.logger.setLevel(logging.DEBUG)
 
-        # File handler
-        handler = logging.FileHandler(log_file)
-        handler.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
+        # Clear any existing handlers to avoid duplication
+        self.logger.handlers.clear()
+
+        # Only add file handler if explicitly enabled
+        self.file_handler = None
+        if enable_file_logging:
+            self._enable_file_logging()
+
+    def _enable_file_logging(self):
+        """Enable persistent file logging. Call this explicitly if you need logs."""
+        if self.file_handler is None:
+            self.file_handler = logging.FileHandler(self.log_file)
+            self.file_handler.setLevel(logging.DEBUG)
+            formatter = logging.Formatter(
+                "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            )
+            self.file_handler.setFormatter(formatter)
+            self.logger.addHandler(self.file_handler)
 
     def log_error(
         self,
@@ -143,11 +157,22 @@ class ErrorLogger:
 
 
 class AgenticSchedulePlanner:
-    """Agentic planner that uses multi-step reasoning to create schedules."""
+    """Agentic planner that uses multi-step reasoning to create schedules.
 
-    def __init__(self):
-        self.error_logger = ErrorLogger()
+    By default, logging is in-memory only (no file side effects).
+    Call enable_file_logging() to persist logs to disk.
+    """
+
+    def __init__(self, enable_file_logging: bool = False):
+        self.enable_file_logging_flag = enable_file_logging
+        self.error_logger = ErrorLogger(enable_file_logging=enable_file_logging)
         self.reasoning_traces: List[ReasoningTrace] = []
+
+    def enable_file_logging(self):
+        """Enable persistent file logging for this planner."""
+        self.enable_file_logging_flag = True
+        if self.error_logger:
+            self.error_logger._enable_file_logging()
 
     def plan_schedule(self, owner: Owner) -> AgenticPlanningResult:
         """
@@ -162,7 +187,7 @@ class AgenticSchedulePlanner:
         6. Execute plan (return final schedule)
         """
         self.reasoning_traces = []
-        self.error_logger = ErrorLogger()
+        self.error_logger = ErrorLogger(enable_file_logging=self.enable_file_logging_flag)
 
         try:
             # Step 1: Analyze Constraints
