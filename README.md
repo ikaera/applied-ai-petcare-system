@@ -125,6 +125,17 @@ pytest tests/ -v
 
 ---
 
+## Quick Reference
+
+```bash
+pytest tests/ -v              # Run all tests (72/72)
+python main.py                # Basic demo (RAG + validation)
+python agentic_demo.py        # 6-step reasoning trace
+streamlit run app.py          # Web interface (http://localhost:8501)
+```
+
+---
+
 ## Usage
 
 ### Option 1: Command-Line Demo
