@@ -120,7 +120,7 @@ pip install -r requirements.txt
 **4. Verify installation**
 ```bash
 pytest tests/ -v
-# Expected: 69/69 tests passing
+# Expected: 72/72 tests passing
 ```
 
 ---
@@ -193,10 +193,10 @@ python agentic_demo.py
 ### Example 3: Full Test Suite
 ```bash
 pytest tests/ -v
-# Result: 69/69 passing (100%)
+# Result: 72/72 passing (100%)
 ```
 
-**Coverage:** Retriever (6), Validator (10), Integrator (5), End-to-End (1), Scheduler (47)
+**Coverage:** Retriever (6), Validator (13), Integrator (5), End-to-End (1), Scheduler (47)
 
 **What it shows:** All components working, bias detection included, full integration tested
 
@@ -204,7 +204,7 @@ pytest tests/ -v
 
 ## Testing & Evaluation
 
-**69 tests, 100% passing.** See [docs/testing.md](docs/testing.md) for full strategy.
+**72 tests, 100% passing.** See [docs/testing.md](docs/testing.md) for full strategy.
 
 ```bash
 pytest tests/ -v
@@ -212,7 +212,7 @@ pytest tests/ -v
 
 **Test breakdown:**
 - RAG Retriever: 6/6 ✓
-- Validator (+ bias detection): 10/10 ✓
+- Validator (+ bias detection, combination tests): 13/13 ✓
 - AI Integrator: 5/5 ✓
 - End-to-End: 1/1 ✓
 - Original Scheduler: 47/47 ✓
@@ -307,7 +307,7 @@ I build AI systems that are **trustworthy, transparent, and genuinely useful**�
 - **Responsible AI:** Confidence scores, guardrails, honest about uncertainty
 - **Systems Thinking:** Integration + testing + monitoring + continuous improvement
 - **Practical Problem-Solving:** Chose simplicity over over-engineering (keyword retrieval, rule-based validation)
-- **Quality & Reliability:** 69 tests (100% passing), modular architecture
+- **Quality & Reliability:** 72 tests (100% passing), modular architecture
 - **User-Centric Design:** Built for real pet owners, not just impressive demos
 - **Effective AI Collaboration:** Used Claude well for architecture & strategy, rejected over-engineered suggestions
 
