@@ -11,6 +11,7 @@ class ValidationIssue(Enum):
     UNSAFE_RECOMMENDATION = "unsafe_recommendation"
     INSUFFICIENT_INFO = "insufficient_info"
     CONFLICTING_INFO = "conflicting_info"
+    BIAS_DETECTED = "bias_detected"
 
 
 @dataclass
@@ -24,7 +25,7 @@ class ValidationResult:
 
 
 class RecommendationValidator:
-    """Validates AI recommendations for safety and reliability."""
+    """Validates AI recommendations for safety, reliability, and fairness."""
 
     MEDICAL_KEYWORDS = {
         "medication", "medicine", "drug", "pain", "illness", "disease",
@@ -34,6 +35,12 @@ class RecommendationValidator:
     SAFE_TASKS = {"walking", "play", "feeding", "grooming", "enrichment", "exercise"}
     POTENTIALLY_UNSAFE = {"medication", "medical", "injury", "emergency"}
 
+    # Bias detection: words that indicate over-generalization
+    OVERGENERALIZATION_PHRASES = {
+        "all dogs", "all cats", "all pets", "every dog", "every cat",
+        "all senior dogs", "all puppies", "always need", "must always"
+    }
+
     def validate_recommendation(
         self,
         recommendation: str,
@@ -41,7 +48,7 @@ class RecommendationValidator:
         task_category: str,
         supporting_docs: List[str] = None
     ) -> ValidationResult:
-        """Validate a task recommendation against safety and completeness criteria."""
+        """Validate a task recommendation against safety, reliability, and fairness criteria."""
         issues = []
         confidence = 1.0
 
@@ -68,6 +75,11 @@ class RecommendationValidator:
         if len(recommendation.split()) < 5:
             issues.append(ValidationIssue.INSUFFICIENT_INFO)
             confidence -= 0.1
+
+        # Check 5: Does recommendation contain bias or over-generalization?
+        if self._contains_bias(recommendation):
+            issues.append(ValidationIssue.BIAS_DETECTED)
+            confidence -= 0.2
 
         confidence = max(0.0, min(1.0, confidence))
         is_valid = len(issues) == 0 and confidence >= 0.5
@@ -120,6 +132,32 @@ class RecommendationValidator:
 
         return True
 
+    def _contains_bias(self, recommendation: str) -> bool:
+        """Check for bias: over-generalizations and missing pet-specific context."""
+        rec_lower = recommendation.lower()
+
+        # Check 1: Over-generalization phrases (e.g., "all dogs need X")
+        for phrase in self.OVERGENERALIZATION_PHRASES:
+            if phrase in rec_lower:
+                return True
+
+        # Check 2: Missing individual pet context (e.g., no mention of age, breed, health)
+        # Red flag: recommendation ignores individual pet differences
+        has_generic_language = any(
+            phrase in rec_lower
+            for phrase in ["standard routine", "typical plan", "standard recommendation", "one-size"]
+        )
+        lacks_context = not any(
+            word in rec_lower
+            for word in ["breed", "age", "health", "condition", "individual", "specific", "custom"]
+        )
+
+        # If generic language is used AND context is missing, flag as bias
+        if has_generic_language and lacks_context:
+            return True
+
+        return False
+
     def _generate_explanation(self, is_valid: bool, issues: List[ValidationIssue], confidence: float) -> str:
         """Generate human-readable explanation of validation result."""
         if is_valid:
@@ -143,5 +181,8 @@ class RecommendationValidator:
 
         if ValidationIssue.CONFLICTING_INFO in issues:
             suggestions.append("Ensure recommendation aligns with the task type")
+
+        if ValidationIssue.BIAS_DETECTED in issues:
+            suggestions.append("Avoid over-generalizations. Consider individual pet traits: breed, age, health status")
 
         return suggestions

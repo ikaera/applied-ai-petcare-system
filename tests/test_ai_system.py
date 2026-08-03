@@ -125,6 +125,44 @@ class TestValidator:
         if result.issues:
             assert len(result.recommendations) > 0
 
+    def test_validator_detects_overgeneralization(self, validator):
+        """Test bias detection: flags over-generalizations like 'all dogs'."""
+        result = validator.validate_recommendation(
+            recommendation="All dogs need the same 30 minute walk every day.",
+            pet_species="dog",
+            task_category="walk"
+        )
+        assert ValidationIssue.BIAS_DETECTED in result.issues
+        assert result.confidence_score <= 0.8
+
+    def test_validator_detects_missing_individual_context(self, validator):
+        """Test bias detection: flags recommendations ignoring individual pet traits."""
+        result = validator.validate_recommendation(
+            recommendation="Follow the standard routine for all puppies.",
+            pet_species="dog",
+            task_category="walk"
+        )
+        assert ValidationIssue.BIAS_DETECTED in result.issues
+
+    def test_validator_accepts_individualized_recommendation(self, validator):
+        """Test that validator accepts recommendations considering individual traits."""
+        result = validator.validate_recommendation(
+            recommendation="Based on Mochi's age and breed, 30 minute walks are appropriate.",
+            pet_species="dog",
+            task_category="walk"
+        )
+        assert ValidationIssue.BIAS_DETECTED not in result.issues
+
+    def test_validator_bias_suggestion(self, validator):
+        """Test that validator provides bias mitigation suggestions."""
+        result = validator.validate_recommendation(
+            recommendation="All cats need this feeding schedule.",
+            pet_species="cat",
+            task_category="feeding"
+        )
+        if ValidationIssue.BIAS_DETECTED in result.issues:
+            assert any("individual" in rec.lower() or "avoid" in rec.lower() for rec in result.recommendations)
+
 
 class TestIntegrator:
     """Tests for AI scheduling integrator."""

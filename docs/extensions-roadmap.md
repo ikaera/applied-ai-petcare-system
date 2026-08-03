@@ -406,104 +406,67 @@ Measure:
 
 ---
 
-# Extension 3: Explanation Module with Bias Detection and Evaluation
+# Extension 3: Bias Detection and Evaluation ✅ COMPLETED
 
 ## Goal
 
-Improve transparency by explaining AI decisions and checking for biased outputs.
+Improve fairness by detecting biased outputs and over-generalizations in recommendations.
 
 ---
 
-## Problem
+## Implementation Status: ✅ COMPLETE
 
-AI recommendations should explain:
+**Bias detection is now integrated into the validator.**
+
+### What Was Implemented
+
+**1. Over-generalization Detection**
+- Flags phrases: "all dogs need X", "every cat should Y", "always need", "must always"
+- Prevents blanket recommendations that ignore individual pet differences
+
+**2. Missing Individual Context Detection**
+- Flags recommendations using generic language ("standard routine", "typical plan") without considering individual traits
+- Ensures breed, age, and health status are considered
+
+**3. Fairness Validation**
+- Generates suggestions: "Consider individual pet traits: breed, age, health status"
+- Reduces confidence score (-0.2) when bias is detected
+
+**4. Testing**
+- 4 dedicated bias detection tests (all passing)
+- Tests verify: detection of over-generalization, missing context, acceptance of fair recommendations, suggestion generation
+
+### Code Location
+
+- **Implementation:** src/ai/validator.py — `_contains_bias()` method and validation check
+- **Tests:** tests/test_ai_system.py — 4 bias detection tests in TestValidator class
+
+### Example
+
+**Bad (flagged):**
+
+```
+"All dogs need the same 30 minute walk every day."
+→ BIAS_DETECTED, confidence: 0.8
+→ Suggestion: "Consider individual pet traits: breed, age, health status"
+```
+
+**Good (accepted):**
+
+```
+"Based on Mochi's age and breed, 30 minute walks are appropriate."
+→ No bias detected, confidence: 1.0
+```
+
+---
+
+## Future Enhancement: Explanation Module
+
+For future versions, recommendations could include explicit reasoning:
 
 * Why a decision was made
 * What information influenced the decision
 * What limitations exist
-
-Example:
-
-Instead of:
-
-```
-Walk your dog first.
-```
-
-Provide:
-
-```
-The walk was selected because:
-
-- Exercise task has high priority
-- It fits available time
-- It supports daily activity goals
-```
-
----
-
-## Explanation Module
-
-Responsible for:
-
-* Generating explanations
-* Showing reasoning factors
-* Presenting evidence
-
----
-
-## Bias Detection
-
-Check for:
-
-* Unfair assumptions
-* Missing user context
-* Over-generalized recommendations
-
-Example:
-
-Bad:
-
-```
-All senior dogs need the same exercise plan.
-```
-
-Better:
-
-```
-Exercise recommendations depend on age, health, and breed.
-```
-
----
-
-## Evaluation Metrics
-
-Measure:
-
-* Explanation quality
-* Completeness
-* User understanding
-* Safety
-
----
-
-## Implementation Steps
-
-### Phase 1
-
-Add explanation generation.
-
-### Phase 2
-
-Create evaluation criteria.
-
-### Phase 3
-
-Add bias checks.
-
-### Phase 4
-
-Collect evaluation results.
 
 ---
 
