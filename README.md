@@ -21,7 +21,7 @@ An intelligent pet care task scheduler enhanced with retrieval-augmented generat
 - [Design Decisions](#design-decisions)
 - [AI Collaboration & Reflection](#ai-collaboration--reflection)
 - [Documentation](#documentation)
-- [Presentation & Portfolio](#presentation--portfolio) ⭐
+- [Presentation & Portfolio](#presentation--portfolio)
 - [Future Improvements](#future-improvements)
 
 ---
@@ -98,16 +98,16 @@ We extended the original system with four integrated AI features:
 - Provides confidence scores (0.0–1.0) for transparency
 
 **Safety checks:**
-- ✓ Medical tasks require supporting veterinary documentation
-- ✓ Species-appropriate recommendations (no unsafe suggestions)
-- ✓ Recommendations match task category
-- ✓ No over-generalizations ("all dogs" → ⚠️ flags as bias)
-- ✓ Individual pet context is considered
+-  Medical tasks require supporting veterinary documentation
+-  Species-appropriate recommendations (no unsafe suggestions)
+-  Recommendations match task category
+-  No over-generalizations ("all dogs" →  flags as bias)
+-  Individual pet context is considered
 
 **How it improves the system:**
 - From: Unvalidated, potentially unsafe recommendations
 - To: Validated recommendations with confidence scores and improvement suggestions
-- Example: "Give medication" without docs → ⚠ REVIEW (confidence: 70%) - needs vet documentation
+- Example: "Give medication" without docs →  REVIEW (confidence: 70%) - needs vet documentation
 
 **Implementation:** [src/ai/validator.py](src/ai/validator.py) — 5-rule validation engine with bias detection
 
@@ -146,8 +146,8 @@ We extended the original system with four integrated AI features:
 - Provides fairness improvement suggestions
 
 **Fairness checks:**
-- ❌ Bad: "All senior dogs need the same exercise plan"
-- ✅ Good: "Based on Mochi's age and breed, 30 minute walks are appropriate"
+-  Bad: "All senior dogs need the same exercise plan"
+-  Good: "Based on Mochi's age and breed, 30 minute walks are appropriate"
 
 **Implementation:** [src/ai/validator.py](src/ai/validator.py) — `_contains_bias()` method with 4 dedicated tests
 
@@ -186,12 +186,12 @@ Scheduling Engine
 (Priority sort, Time budget)
           ↓
 AI Integrator (Orchestrator)
-├─ RAG Retriever
-│  └─ Knowledge Base (15 docs)
-├─ Recommendation Validator
-│  └─ Validation Rules & Guardrails
-└─ Agentic Planner
-   └─ 6-step reasoning pipeline
+ RAG Retriever
+   Knowledge Base (15 docs)
+ Recommendation Validator
+   Validation Rules & Guardrails
+ Agentic Planner
+    6-step reasoning pipeline
           ↓
 Enhanced Plan
 (with Retrieval, Validation, Reasoning)
@@ -306,9 +306,9 @@ python main.py
 ```
 DAILY SCHEDULE
 ==============
-08:00 | Mochi   | Morning walk (30 min)  | 📚 Retrieval: ✓ | ✓ PASS (0.95)
-08:30 | Whiskers| Feeding (5 min)       | 📚 Retrieval: ✓ | ✓ PASS (1.00)
-08:35 | Mochi   | Feeding (10 min)      | 📚 Retrieval: ✓ | ✓ PASS (0.98)
+08:00 | Mochi   | Morning walk (30 min)  |  Retrieval:  |  PASS (0.95)
+08:30 | Whiskers| Feeding (5 min)       |  Retrieval:  |  PASS (1.00)
+08:35 | Mochi   | Feeding (10 min)      |  Retrieval:  |  PASS (0.98)
 ...
 
 SYSTEM METRICS
@@ -322,10 +322,10 @@ Validation pass rate: 75%
 ```
 
 **What it shows:**
-- ✅ Retrieval is working (📚 symbol for each task)
-- ✅ Validation is checking recommendations
-- ✅ Confidence scores are transparent (0.84 average)
-- ✅ System identifies which tasks pass validation
+-  Retrieval is working ( symbol for each task)
+-  Validation is checking recommendations
+-  Confidence scores are transparent (0.84 average)
+-  System identifies which tasks pass validation
 
 ---
 
@@ -345,35 +345,35 @@ Step 1: Analyze Constraints
 → Available time: 90 minutes
 → Pets: 2 (dog, cat)
 → Tasks: 8
-✓ Confidence: 0.95
+ Confidence: 0.95
 
 Step 2: Assess Priorities
 → High priority: 5 tasks
 → Medium priority: 2 tasks
 → Low priority: 1 task
-✓ Confidence: 0.90
+ Confidence: 0.90
 
 Step 3: Detect Conflicts
 → Scanning for scheduling conflicts...
-⚠ Found: Two tasks scheduled 08:00 (different pets, OK)
-✓ Confidence: 0.70
+ Found: Two tasks scheduled 08:00 (different pets, OK)
+ Confidence: 0.70
 
 Step 4: Optimize Schedule
 → Reordering to fit within 90 minutes
 → Feasible plan found
-✓ Confidence: 0.85
+ Confidence: 0.85
 
 Step 5: Validate Plan
 → Running validator on all tasks
 → 6/8 tasks pass validation
-⚠ 2 tasks need review (medical without vet docs)
-✓ Confidence: 0.90
+ 2 tasks need review (medical without vet docs)
+ Confidence: 0.90
 
 Step 6: Execute Plan
 → Ready to present schedule
-✓ Confidence: 0.95
+ Confidence: 0.95
 
-OVERALL PLAN VIABILITY: 87.5% ✓ VIABLE
+OVERALL PLAN VIABILITY: 87.5%  VIABLE
 ```
 
 **What it shows:**
@@ -405,18 +405,18 @@ tests/test_ai_system.py::TestValidator::test_validator_accepts_individualized_re
 ========== 69 PASSED in 0.10s ==========
 
 Test Summary:
-- RAG Retriever tests:      6/6 ✅
-- Validator tests:          10/10 ✅ (includes 4 bias detection tests)
-- AI Integrator tests:      5/5 ✅
-- End-to-End tests:         1/1 ✅
-- Original Scheduler tests: 47/47 ✅
+- RAG Retriever tests:      6/6 
+- Validator tests:          10/10  (includes 4 bias detection tests)
+- AI Integrator tests:      5/5 
+- End-to-End tests:         1/1 
+- Original Scheduler tests: 47/47 
 ```
 
 **What it shows:**
-- ✅ All components working correctly
-- ✅ Bias detection tests passing (4 tests)
-- ✅ Full integration tested
-- ✅ Original scheduler still working (47 tests)
+-  All components working correctly
+-  Bias detection tests passing (4 tests)
+-  Full integration tested
+-  Original scheduler still working (47 tests)
 
 ---
 
@@ -437,22 +437,22 @@ pytest tests/ --cov=src
 ### Test Coverage
 | Component | Tests | Status |
 |-----------|-------|--------|
-| RAG Retriever | 6 | ✅ All Pass |
-| Validator (with bias detection) | 10 | ✅ All Pass |
-| AI Integrator | 5 | ✅ All Pass |
-| End-to-End Integration | 1 | ✅ All Pass |
-| Original Scheduler | 47 | ✅ All Pass |
-| **Total** | **69** | **✅ 100%** |
+| RAG Retriever | 6 |  All Pass |
+| Validator (with bias detection) | 10 |  All Pass |
+| AI Integrator | 5 |  All Pass |
+| End-to-End Integration | 1 |  All Pass |
+| Original Scheduler | 47 |  All Pass |
+| **Total** | **69** | ** 100%** |
 
 ### Key Test Cases
-- ✅ Retriever loads 15 knowledge base documents
-- ✅ Retriever finds species-specific information
-- ✅ Validator flags medical recommendations without veterinary docs
-- ✅ Validator detects over-generalizations (bias detection)
-- ✅ Validator accepts individualized recommendations
-- ✅ Confidence scores stay within 0.0–1.0 range
-- ✅ Integrator combines retrieval, validation, and planning
-- ✅ Full end-to-end workflow produces correct output
+-  Retriever loads 15 knowledge base documents
+-  Retriever finds species-specific information
+-  Validator flags medical recommendations without veterinary docs
+-  Validator detects over-generalizations (bias detection)
+-  Validator accepts individualized recommendations
+-  Confidence scores stay within 0.0–1.0 range
+-  Integrator combines retrieval, validation, and planning
+-  Full end-to-end workflow produces correct output
 
 ---
 
@@ -470,10 +470,10 @@ Validation Process:
   1. Is this medical? → YES (keyword: "meds")
   2. Has supporting docs? → NO
   3. Is veterinary doc present? → NO
-  ⚠ RESULT: REVIEW NEEDED
+   RESULT: REVIEW NEEDED
 
 Output:
-  ⚠ Recommendation flagged for review
+   Recommendation flagged for review
   Confidence: 0.70 (lowered from 1.0)
   Issue: Missing medical context
   Suggestion: "Add reference to supporting veterinary documentation"
@@ -481,7 +481,7 @@ Output:
   User action: Must confirm with veterinarian before accepting
 ```
 
-**Guardrail working:** ✓ System prevents unsafe medical advice
+**Guardrail working:**  System prevents unsafe medical advice
 
 ---
 
@@ -499,16 +499,16 @@ Validation Process:
   3. Does it match category? → YES (feeding matches feeding)
   4. Has sufficient detail? → YES
   5. Contains bias? → NO
-  ✓ RESULT: PASS
+   RESULT: PASS
 
 Output:
-  ✓ Recommendation approved
+   Recommendation approved
   Confidence: 1.00
   
   User action: Can proceed immediately
 ```
 
-**System working correctly:** ✓ Safe recommendations approved with high confidence
+**System working correctly:**  Safe recommendations approved with high confidence
 
 ---
 
@@ -587,7 +587,7 @@ Test pass rate:              69/69 (100%)
 
 ### How AI Was Used
 
-**✅ Helpful Contributions:**
+** Helpful Contributions:**
 
 1. **Architecture Design**
    - Claude suggested modular pipeline (retriever → validator → integrator)
@@ -604,7 +604,7 @@ Test pass rate:              69/69 (100%)
    - Recommended both unit and integration tests
    - Helped design test fixtures
 
-**❌ Flawed Suggestions (That I Rejected):**
+** Flawed Suggestions (That I Rejected):**
 
 1. **Over-Engineered Retrieval**
    - Claude suggested: "Use vector embeddings for semantic similarity"
@@ -664,12 +664,12 @@ This section contains everything needed for grading **without requiring a video*
 
 ### Portfolio Artifact
 
-#### 📍 GitHub Repository
+####  GitHub Repository
 - **Link:** https://github.com/ikaera/applied-ai-petcare-system
 - **Branch:** main (production-ready)
 - **Status:** Complete, fully tested (69/69 tests passing)
 
-#### 🧑‍💼 Professional Reflection: What This Project Says About Me as an AI Engineer
+#### ‍ Professional Reflection: What This Project Says About Me as an AI Engineer
 
 I build AI systems that are **trustworthy, transparent, and genuinely useful**—not just technically impressive. This project demonstrates:
 
@@ -692,14 +692,14 @@ I build AI systems that are **trustworthy, transparent, and genuinely useful**�
 **This README contains all text-based evidence needed for grading. Video is optional and not required.**
 
 The sections below demonstrate:
-- ✅ End-to-end system run (3 examples with different inputs)
-- ✅ AI feature behavior (RAG, validation, agents, bias detection)
-- ✅ Reliability/guardrail behavior (safety in action)
-- ✅ Clear outputs (tables, metrics, traces)
+-  End-to-end system run (3 examples with different inputs)
+-  AI feature behavior (RAG, validation, agents, bias detection)
+-  Reliability/guardrail behavior (safety in action)
+-  Clear outputs (tables, metrics, traces)
 
 ---
 
-#### ✅ Execution Evidence #1: End-to-End Demo (Basic Run)
+####  Execution Evidence #1: End-to-End Demo (Basic Run)
 
 **What it demonstrates:**
 - System runs end-to-end
@@ -732,11 +732,11 @@ Pet 2: Whiskers (cat)
 ```
 DAILY SCHEDULE
 ==============
-08:00 | Mochi    | Morning walk (30 min)     | 📚 ✓ PASS (0.95)
-08:30 | Whiskers | Feeding (5 min)          | 📚 ✓ PASS (1.00)
-08:35 | Mochi    | Feeding (10 min)         | 📚 ✓ PASS (0.98)
-08:45 | Whiskers | Grooming (15 min)        | 📚 ⚠ REVIEW (0.75)
-09:00 | Mochi    | Evening meds (5 min)     | 📚 ⚠ REVIEW (0.70)
+08:00 | Mochi    | Morning walk (30 min)     |   PASS (0.95)
+08:30 | Whiskers | Feeding (5 min)          |   PASS (1.00)
+08:35 | Mochi    | Feeding (10 min)         |   PASS (0.98)
+08:45 | Whiskers | Grooming (15 min)        |   REVIEW (0.75)
+09:00 | Mochi    | Evening meds (5 min)     |   REVIEW (0.70)
 ...
 
 RETRIEVED DOCUMENTS
@@ -765,15 +765,15 @@ Test pass rate:            69/69 (100%)
 ```
 
 **What this shows:**
-- ✅ System runs successfully end-to-end
-- ✅ RAG retrieval working (📚 symbol shows documents retrieved)
-- ✅ Validation active (PASS or REVIEW status)
-- ✅ Confidence scores transparent (0.70 to 1.00)
-- ✅ Metrics tracking reliability
+-  System runs successfully end-to-end
+-  RAG retrieval working ( symbol shows documents retrieved)
+-  Validation active (PASS or REVIEW status)
+-  Confidence scores transparent (0.70 to 1.00)
+-  Metrics tracking reliability
 
 ---
 
-#### ✅ Execution Evidence #2: AI Feature Behavior (Agentic Reasoning)
+####  Execution Evidence #2: AI Feature Behavior (Agentic Reasoning)
 
 **What it demonstrates:**
 - Multi-step reasoning pipeline
@@ -798,58 +798,58 @@ Step 1: Analyze Constraints
   → Number of pets: 2
   → Number of tasks: 8
   → Task categories: walk, feeding, meds, grooming, enrichment
-  ✓ Confidence: 0.95
+   Confidence: 0.95
 
 Step 2: Assess Priorities
   → High priority tasks: 5 (morning walk, feedings, evening meds)
   → Medium priority tasks: 2 (grooming, enrichment)
   → Low priority tasks: 1 (additional enrichment)
   → Decision: Prioritize medical and essential feeding
-  ✓ Confidence: 0.90
+   Confidence: 0.90
 
 Step 3: Detect Conflicts
   → Scanning for simultaneous scheduling...
   → Found: Walk at 08:00 and cat feeding also at 08:00 (DIFFERENT PETS OK)
-  ⚠ Potential issue: Medical task has no veterinary documentation
-  ✓ Confidence: 0.70
+   Potential issue: Medical task has no veterinary documentation
+   Confidence: 0.70
 
 Step 4: Optimize Schedule
   → Creating time-optimal schedule...
   → Fitting 8 tasks into 90 minutes
   → Feasible arrangement found: Yes (total = 85 minutes)
   → Recommended: Schedule morning walk first (highest priority)
-  ✓ Confidence: 0.85
+   Confidence: 0.85
 
 Step 5: Validate Plan
   → Running validator on all 8 tasks
   → Results: 6/8 tasks pass validation
   → Tasks requiring review: Evening meds (needs vet doc), Evening grooming (missing context)
-  ✓ Confidence: 0.90
+   Confidence: 0.90
 
 Step 6: Execute Plan
   → All steps complete
   → Ready to present to user
   → Warnings flagged for medical tasks
-  ✓ Confidence: 0.95
+   Confidence: 0.95
 
 OVERALL PLAN VIABILITY
 ======================
   Average confidence across all steps: 87.5%
-  ✓ VIABLE - Proceed with this plan
+   VIABLE - Proceed with this plan
   
   User action: Medical tasks flagged for veterinary confirmation before execution
 ```
 
 **What this shows:**
-- ✅ Multi-step reasoning with transparency
-- ✅ Confidence scoring at each step (0.70 to 0.95)
-- ✅ Real decision-making (conflicts detected, issues identified)
-- ✅ Overall viability score (87.5%)
-- ✅ Clear reasons for warnings (medical without vet docs)
+-  Multi-step reasoning with transparency
+-  Confidence scoring at each step (0.70 to 0.95)
+-  Real decision-making (conflicts detected, issues identified)
+-  Overall viability score (87.5%)
+-  Clear reasons for warnings (medical without vet docs)
 
 ---
 
-#### ✅ Execution Evidence #3: Reliability & Guardrail Behavior
+####  Execution Evidence #3: Reliability & Guardrail Behavior
 
 **What it demonstrates:**
 - Medical task safety guardrail
@@ -876,10 +876,10 @@ Pet: Dog
 5. Contains bias? → NO
 
 ISSUES FOUND:
-  ❌ Missing context (no veterinary documentation)
-  ❌ Insufficient detail
+   Missing context (no veterinary documentation)
+   Insufficient detail
 
-RESULT: ⚠ REVIEW NEEDED
+RESULT:  REVIEW NEEDED
 Confidence: 0.70 (lowered from 1.0)
 Suggestion: "Add reference to supporting veterinary documentation"
 
@@ -887,10 +887,10 @@ User action: MUST CONFIRM WITH VETERINARIAN before accepting
 ```
 
 **What this shows:**
-- ✅ Guardrail prevented unsafe medical advice
-- ✅ Confidence score reflects uncertainty (0.70)
-- ✅ Clear reason for warning
-- ✅ User must take action before proceeding
+-  Guardrail prevented unsafe medical advice
+-  Confidence score reflects uncertainty (0.70)
+-  Clear reason for warning
+-  User must take action before proceeding
 
 ---
 
@@ -912,14 +912,14 @@ Pet: Cat
 4. Has sufficient detail? → YES
 5. Contains bias? → NO
 
-RESULT: ✓ PASS
+RESULT:  PASS
 Confidence: 1.00
 ```
 
 **What this shows:**
-- ✅ Safe recommendations approved immediately
-- ✅ High confidence when no concerns (1.00)
-- ✅ Different outcomes for medical vs. non-medical tasks
+-  Safe recommendations approved immediately
+-  High confidence when no concerns (1.00)
+-  Different outcomes for medical vs. non-medical tasks
 
 ---
 
@@ -940,10 +940,10 @@ Category: walking
 4. Safe recommendation? → YES
 
 ISSUES FOUND:
-  ❌ Bias detected (over-generalization)
-  ⚠ Missing individual context
+   Bias detected (over-generalization)
+   Missing individual context
 
-RESULT: ⚠ BIASED - Needs individual consideration
+RESULT:  BIASED - Needs individual consideration
 Confidence: 0.80 (lowered from 1.0)
 Suggestion: "Avoid over-generalizations. Consider individual pet traits: breed, age, health status"
 ```
@@ -956,14 +956,14 @@ Confidence: 1.00 (no concerns)
 ```
 
 **What this shows:**
-- ✅ Bias detection working
-- ✅ Fairness validation flagging over-generalizations
-- ✅ Clear suggestions for improvement
-- ✅ Individualized recommendations get higher confidence
+-  Bias detection working
+-  Fairness validation flagging over-generalizations
+-  Clear suggestions for improvement
+-  Individualized recommendations get higher confidence
 
 ---
 
-#### ✅ Execution Evidence #4: Full System Test Suite
+####  Execution Evidence #4: Full System Test Suite
 
 **What it demonstrates:**
 - All components tested
@@ -1019,48 +1019,48 @@ tests/test_pawpal.py::test_reschedule_weekly_task_returns_none_when_no_slot_foun
 TEST COVERAGE SUMMARY
 ====================
 RAG Retriever (6 tests):
-  ✅ Loads 15 documents
-  ✅ Finds dog-specific information
-  ✅ Finds cat-specific information
-  ✅ Retrieves by category
-  ✅ Handles empty queries
-  ✅ Respects top_k limits
+   Loads 15 documents
+   Finds dog-specific information
+   Finds cat-specific information
+   Retrieves by category
+   Handles empty queries
+   Respects top_k limits
 
 Recommendation Validator (10 tests):
-  ✅ Passes safe recommendations
-  ✅ Flags medical without docs
-  ✅ Validates species appropriateness
-  ✅ Confidence scores in range
-  ✅ Generates improvement suggestions
-  ✅ Detects over-generalizations (bias)
-  ✅ Detects missing context (fairness)
-  ✅ Accepts individualized recommendations
-  ✅ Provides bias mitigation suggestions
+   Passes safe recommendations
+   Flags medical without docs
+   Validates species appropriateness
+   Confidence scores in range
+   Generates improvement suggestions
+   Detects over-generalizations (bias)
+   Detects missing context (fairness)
+   Accepts individualized recommendations
+   Provides bias mitigation suggestions
 
 AI Integrator (5 tests):
-  ✅ Enhances plans with retrieval
-  ✅ Retrieves relevant documents
-  ✅ Tracks metrics accurately
-  ✅ Validates all items
-  ✅ Logs interactions
+   Enhances plans with retrieval
+   Retrieves relevant documents
+   Tracks metrics accurately
+   Validates all items
+   Logs interactions
 
 End-to-End Integration (1 test):
-  ✅ Full workflow works (scheduling → RAG → validation → metrics)
+   Full workflow works (scheduling → RAG → validation → metrics)
 
 Original Scheduler (47 tests):
-  ✅ All original scheduling logic working
-  ✅ Task management, priorities, time budgeting
-  ✅ Conflict detection, persistence
+   All original scheduling logic working
+   Task management, priorities, time budgeting
+   Conflict detection, persistence
 ```
 
 **What this shows:**
-- ✅ All 69 tests passing (100% success rate)
-- ✅ RAG: 6/6 tests passing
-- ✅ Validation (with bias detection): 10/10 tests passing
-- ✅ Integration: 5/5 tests passing
-- ✅ End-to-end: 1/1 test passing
-- ✅ Original system: 47/47 tests passing
-- ✅ Every AI feature thoroughly tested
+-  All 69 tests passing (100% success rate)
+-  RAG: 6/6 tests passing
+-  Validation (with bias detection): 10/10 tests passing
+-  Integration: 5/5 tests passing
+-  End-to-end: 1/1 test passing
+-  Original system: 47/47 tests passing
+-  Every AI feature thoroughly tested
 
 ---
 
@@ -1069,25 +1069,25 @@ Original Scheduler (47 tests):
 This README demonstrates all required evidence:
 
 ```
-✅ End-to-end system run (3 examples)
+ End-to-end system run (3 examples)
    - Example 1: Basic demo (python main.py)
    - Example 2: Agentic reasoning (python agentic_demo.py)
    - Example 3: Test suite (pytest tests/ -v)
 
-✅ AI Feature Behavior
+ AI Feature Behavior
    - RAG retrieval: Shows documents retrieved per task
    - Validation: Shows PASS/REVIEW decisions
    - Confidence scoring: Shows 0.0-1.0 scores
    - Agentic reasoning: Shows 6-step planning with confidence
    - Bias detection: Shows fairness validation
 
-✅ Reliability/Guardrail Behavior
-   - Medical task safety: ⚠ REVIEW when missing vet docs
-   - Safe task approval: ✓ PASS for safe tasks
+ Reliability/Guardrail Behavior
+   - Medical task safety:  REVIEW when missing vet docs
+   - Safe task approval:  PASS for safe tasks
    - Bias detection: Flags over-generalizations
    - Clear impact: Confidence scores reflect issues
 
-✅ Clear Outputs
+ Clear Outputs
    - Schedule tables with status
    - Retrieved documents listed
    - System metrics and pass/fail rates
@@ -1119,10 +1119,10 @@ If you record a video, include:
 
 ### Summary
 
-- ✅ **GitHub Repository:** https://github.com/ikaera/applied-ai-petcare-system
-- ✅ **Professional Reflection:** See portfolio section above
-- ✅ **Execution Evidence:** 4 complete examples in this section
-- ✅ **Grading Ready:** No video required; all evidence text-based in README
+-  **GitHub Repository:** https://github.com/ikaera/applied-ai-petcare-system
+-  **Professional Reflection:** See portfolio section above
+-  **Execution Evidence:** 4 complete examples in this section
+-  **Grading Ready:** No video required; all evidence text-based in README
 
 ---
 
@@ -1152,37 +1152,37 @@ If you record a video, include:
 
 ```
 applied-ai-petcare-system/
-├── README.md (this file)
-├── requirements.txt
-├── knowledge_base.json (15 pet care documents)
-├── pawpal_system.py (original scheduling logic)
-├── main.py (demo: RAG + validation)
-├── agentic_demo.py (demo: multi-step reasoning)
-├── app.py (Streamlit web interface)
-├── formatting.py (display utilities)
-│
-├── src/
-│   └── ai/
-│       ├── __init__.py
-│       ├── retriever.py (RAG implementation)
-│       ├── validator.py (validation + bias detection)
-│       ├── integrator.py (orchestrator)
-│       └── agentic_planner.py (multi-step reasoning)
-│
-├── tests/
-│   ├── test_pawpal.py (scheduler tests: 47 tests)
-│   └── test_ai_system.py (AI component tests: 22 tests)
-│
-├── diagrams/
-│   └── architecture.mmd (system architecture)
-│
-└── docs/
-    ├── architecture.md
-    ├── extensions-roadmap.md
-    ├── testing.md
-    ├── setup-guide.md
-    ├── model_card.md
-    └── workflow.md
+ README.md (this file)
+ requirements.txt
+ knowledge_base.json (15 pet care documents)
+ pawpal_system.py (original scheduling logic)
+ main.py (demo: RAG + validation)
+ agentic_demo.py (demo: multi-step reasoning)
+ app.py (Streamlit web interface)
+ formatting.py (display utilities)
+
+ src/
+    ai/
+        __init__.py
+        retriever.py (RAG implementation)
+        validator.py (validation + bias detection)
+        integrator.py (orchestrator)
+        agentic_planner.py (multi-step reasoning)
+
+ tests/
+    test_pawpal.py (scheduler tests: 47 tests)
+    test_ai_system.py (AI component tests: 22 tests)
+
+ diagrams/
+    architecture.mmd (system architecture)
+
+ docs/
+     architecture.md
+     extensions-roadmap.md
+     testing.md
+     setup-guide.md
+     model_card.md
+     workflow.md
 ```
 
 ---
