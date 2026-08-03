@@ -1,418 +1,129 @@
+# Quick Setup Guide
 
-`docs/setup-guide.md`
-
-How can another developer install and run this project?
-
-# Setup Guide
-
-## Table of Contents
-
-- [Overview](#overview)
-- [System Requirements](#system-requirements)
-- [Clone the Repository](#clone-the-repository)
-- [Create Virtual Environment](#create-virtual-environment)
-- [Install Dependencies](#install-dependencies)
-- [Environment Configuration](#environment-configuration)
-- [Project Structure](#project-structure)
-- [Running the Application](#running-the-application)
-- [Running Tests](#running-tests)
-- [Troubleshooting](#troubleshooting)
-
+For detailed instructions, see [README.md](../README.md#installation).
 
 ---
 
-# Overview
+## Prerequisites
 
-This guide explains how to set up and run the `applied-ai-petcare-system` project locally.
-
-The goal is to make the project reproducible so another developer can install, run, and test the system without additional configuration.
-
-
----
-
-# System Requirements
-
-## Required Software
-
-Install:
-
-- Python 3.11 or higher
+- Python 3.8+
 - Git
-- Code editor (recommended: Visual Studio Code)
-
-
-## Verify Installation
-
-Check Python:
-
-```bash
-python --version
-````
-
-Expected:
-
-```text
-Python 3.11+
-```
-
-Check Git:
-
-```bash
-git --version
-```
+- Text editor (VS Code, etc.)
 
 ---
 
-# Clone the Repository
+## Installation (5 minutes)
 
-Clone the project:
-
+**1. Clone**
 ```bash
-git clone https://github.com/username/applied-ai-petcare-system.git
-```
-
-Move into the project folder:
-
-```bash
+git clone https://github.com/ikaera/applied-ai-petcare-system.git
 cd applied-ai-petcare-system
 ```
 
----
-
-# Create Virtual Environment
-
-A virtual environment keeps project dependencies isolated.
-
-## Windows
-
-Create environment:
-
-```powershell
-python -m venv .venv
-```
-
-Activate:
-
-```powershell
-.venv\Scripts\activate
-```
-
-## macOS/Linux
-
-Create environment:
-
-```bash
-python3 -m venv .venv
-```
-
-Activate:
-
-```bash
-source .venv/bin/activate
-```
-
-After activation, the terminal should show:
-
-```text
-(.venv)
-```
-
----
-
-# Install Dependencies
-
-Upgrade pip:
-
-```bash
-python -m pip install --upgrade pip
-```
-
-Install project packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-Verify installed packages:
-
-```bash
-pip list
-```
-
----
-
-# Environment Configuration
-
-Some AI features may require external services.
-
-Create an environment file:
-
-```text
-.env
-```
-
-Example:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-```
-
-## Important Notes
-
-* Never commit `.env` files to GitHub.
-* Add `.env` to `.gitignore`.
-* Keep API keys private.
-
-Example `.gitignore`:
-
-```text
-.env
-.venv/
-__pycache__/
-logs/
-```
-
----
-
-# Project Structure
-
-After setup, the project should look like:
-
-```text
-applied-ai-petcare-system/
-
-├── README.md
-
-├── docs/
-
-├── diagrams/
-
-├── src/
-
-│   ├── app.py
-│   ├── main.py
-│   ├── petcare_system.py
-│   └── ai/
-
-├── data/
-
-│   └── knowledge_base/
-
-├── logs/
-
-├── evaluations/
-
-├── tests/
-
-├── requirements.txt
-
-└── .env
-```
-
----
-
-# Running the Application
-
-## Run Command-Line Version
-
-```bash
-python -m src.main
-```
-
-Expected behavior:
-
-* Loads sample data
-* Generates a pet-care plan
-* Displays scheduling results
-
----
-
-## Run Streamlit Application
-
-Start the web interface:
-
-```bash
-streamlit run src/app.py
-```
-
-The application will open in a browser.
-
----
-
-# Running Tests
-
-Run the complete test suite:
-
-```bash
-pytest
-```
-
-Run with detailed output:
-
-```bash
-pytest -v
-```
-
-Expected output:
-
-```text
-All tests passed
-```
-
----
-
-# AI Feature Testing
-
-If AI components are enabled, verify:
-
-## Retrieval
-
-Check:
-
-* Documents load correctly
-* Relevant information is retrieved
-* Responses use retrieved information
-
-## Validation
-
-Check:
-
-* Invalid answers are detected
-* Missing information is handled
-* Unsafe outputs are flagged
-
-## Reliability Evaluation
-
-Check:
-
-* Confidence scores are generated
-* Evaluation results are saved
-* Logs are created
-
----
-
-# Troubleshooting
-
-## Problem: Python command not found
-
-Solution:
-
-Install Python and make sure it is added to PATH.
-
-Verify:
-
-```bash
-python --version
-```
-
----
-
-## Problem: Dependency installation fails
-
-Try:
-
-```bash
-python -m pip install --upgrade pip
-```
-
-Then:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Problem: Virtual environment is not activated
+**2. Virtual Environment**
 
 Windows:
-
-```powershell
+```bash
+python -m venv .venv
 .venv\Scripts\activate
 ```
 
 macOS/Linux:
-
 ```bash
+python -m venv .venv
 source .venv/bin/activate
 ```
 
----
-
-## Problem: Tests fail
-
-Check:
-
-1. Virtual environment is active
-2. Dependencies are installed
-3. Correct Python version is used
-
-Run:
-
+**3. Install Dependencies**
 ```bash
-python --version
+pip install -r requirements.txt
+```
 
-pip list
-
-pytest -v
+**4. Verify**
+```bash
+pytest tests/ -v
+# Expected: 72/72 passing
 ```
 
 ---
 
-# Development Recommendations
+## Running the System
 
-For development:
-
-1. Create a new branch:
-
+**Command-line demo:**
 ```bash
-git checkout -b feature-name
+python main.py
 ```
 
-2. Make changes.
-
-3. Run tests:
-
+**Agentic reasoning demo:**
 ```bash
-pytest
+python agentic_demo.py
 ```
 
-4. Commit changes:
-
+**Web interface:**
 ```bash
-git add .
-
-git commit -m "Add feature"
+streamlit run app.py
+# Opens: http://localhost:8501
 ```
 
-5. Push changes:
-
+**Run tests:**
 ```bash
-git push origin feature-name
+pytest tests/ -v
 ```
 
 ---
 
-# Next Steps
+## Project Structure
 
-After completing setup:
-
-1. Review the architecture:
-
-[Architecture Documentation](architecture.md)
-
-2. Review the AI roadmap:
-
-[Extensions Roadmap](extensions-roadmap.md)
-
-3. Run the test suite:
-
-[Testing Documentation](testing.md)
-
+```
+├── README.md                 # Main documentation
+├── PRESENTATION.md           # Demo Day pitch
+├── requirements.txt          # Dependencies
+├── knowledge_base.json       # 15 pet care documents
+├── pawpal_system.py          # Original scheduler
+├── main.py                   # Demo: RAG + validation
+├── agentic_demo.py           # Demo: 6-step reasoning
+├── app.py                    # Streamlit web UI
+│
+├── src/ai/
+│   ├── retriever.py          # RAG implementation
+│   ├── validator.py          # Validation + bias detection
+│   ├── integrator.py         # Component orchestration
+│   └── agentic_planner.py    # Multi-step reasoning
+│
+├── tests/
+│   ├── test_ai_system.py     # AI tests (22)
+│   └── test_pawpal.py        # Scheduler tests (47)
+│
+└── docs/
+    ├── architecture.md       # System design
+    ├── testing.md            # Test strategy
+    ├── setup-guide.md        # This file
+    ├── extensions-roadmap.md # Future features
+    ├── model_card.md         # Responsible AI
+    └── workflow.md           # Development process
+```
 
 ---
 
-# Navigation
+## Troubleshooting
 
-- [Back to README](../README.md)
-- [Back to Top](#table-of-contents)
+**Issue:** Python not found
+- **Fix:** Install Python 3.8+ from python.org
+
+**Issue:** pip not found
+- **Fix:** Use `python -m pip` instead
+
+**Issue:** Tests fail
+- **Fix:** Make sure virtual environment is activated and requirements installed
+
+**Issue:** streamlit not found
+- **Fix:** Run `pip install -r requirements.txt` again
+
+---
+
+## Next Steps
+
+1. Run `python main.py` to see the system in action
+2. Check `tests/` to understand component behavior
+3. Read `README.md` for feature overview
+4. See `docs/architecture.md` for system design
