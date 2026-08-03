@@ -1,0 +1,79 @@
+{
+  "documents": [
+    {
+      "id": "dog_health_basics",
+      "title": "Dog Health Basics",
+      "content": "Dogs require daily exercise (30-60 minutes depending on breed), regular veterinary checkups (annually or semi-annually), vaccinations on schedule, and preventive care. Common signs of health issues include lethargy, loss of appetite, excessive panting, and limping. Always consult a veterinarian before starting new medications or treatments."
+    },
+    {
+      "id": "dog_medication",
+      "title": "Dog Medications",
+      "content": "Medications for dogs must be prescribed by a veterinarian. Common medications include antibiotics for infections, pain relievers for arthritis, and behavioral medications. Medications should be given at the same time each day for consistency. Never administer human medications to dogs without veterinary approval."
+    },
+    {
+      "id": "dog_feeding",
+      "title": "Dog Feeding Guide",
+      "content": "Adult dogs typically need 1-2 meals per day. Puppies need 3-4 meals per day. Food portions depend on dog size, age, and activity level. High-quality dog food should be the primary diet. Treats should make up no more than 10% of daily calories. Fresh water should be available at all times. Some human foods are toxic to dogs (chocolate, grapes, onions, avocado)."
+    },
+    {
+      "id": "dog_exercise",
+      "title": "Dog Exercise Requirements",
+      "content": "Exercise is crucial for dog health and behavior. Puppies and young dogs need frequent play sessions. Adult dogs need daily walks and play (30-60 minutes). Senior dogs need gentler exercise. Lack of exercise can lead to obesity, destructive behavior, and anxiety. Exercise should be age-appropriate and not excessive on hot days."
+    },
+    {
+      "id": "dog_grooming",
+      "title": "Dog Grooming and Hygiene",
+      "content": "Most dogs need regular baths (every 4-8 weeks depending on coat type), nail trimming (every 3-4 weeks), ear cleaning, and teeth brushing. Long-haired breeds need daily brushing to prevent matting. Regular grooming improves skin health, reduces infection risk, and allows early detection of health issues."
+    },
+    {
+      "id": "cat_health_basics",
+      "title": "Cat Health Basics",
+      "content": "Cats need annual veterinary checkups, up-to-date vaccinations, and preventive care. Signs of illness in cats include changes in appetite, litter box habits, excessive grooming, or unusual behavior. Cats are prey animals and may hide symptoms, so careful observation is important. Senior cats (7+ years) need semi-annual checkups."
+    },
+    {
+      "id": "cat_medication",
+      "title": "Cat Medications",
+      "content": "Cat medications must be prescribed by a veterinarian. Cats are sensitive to many medications that are safe for dogs. Common medications include antibiotics, pain relievers, and behavioral medications. Always follow dosing instructions carefully. Never give human medications to cats without explicit veterinary approval."
+    },
+    {
+      "id": "cat_feeding",
+      "title": "Cat Feeding Guide",
+      "content": "Cats are obligate carnivores and need meat-based diets. Adult cats typically eat 2 meals per day (some prefer grazing). Food portions should be based on cat age, weight, and activity level. Fresh water should always be available. Cats can become overweight easily, so portion control is important. Sudden diet changes can cause digestive upset."
+    },
+    {
+      "id": "cat_exercise",
+      "title": "Cat Exercise and Enrichment",
+      "content": "Indoor cats need regular play and enrichment (15-30 minutes daily). Interactive toys, climbing structures, and puzzle feeders prevent boredom and obesity. Outdoor time should be supervised or in a secure enclosure. Senior cats need gentler play and comfortable resting areas. Exercise helps maintain weight and mental health."
+    },
+    {
+      "id": "cat_grooming",
+      "title": "Cat Grooming and Hygiene",
+      "content": "Most cats are self-grooming but benefit from brushing (2-3 times weekly for long-haired, weekly for short-haired) to reduce shedding and matting. Nail trimming is needed every 2-3 weeks. Dental care is important to prevent tooth disease. Litter box cleanliness is essential for health and hygiene."
+    },
+    {
+      "id": "emergency_signs",
+      "title": "Emergency Signs for Pets",
+      "content": "Seek immediate veterinary care if your pet shows: difficulty breathing, seizures, severe bleeding, loss of consciousness, inability to eat or drink, severe pain, sudden paralysis, or persistent vomiting/diarrhea. In emergencies, call your vet or emergency clinic immediately rather than waiting for a scheduled appointment."
+    },
+    {
+      "id": "vaccination_schedule",
+      "title": "Pet Vaccination Schedule",
+      "content": "Puppies need initial vaccinations at 6-8 weeks, boosters at 10-12 weeks, and final booster at 14-16 weeks. Annual or tri-annual boosters are needed based on vaccine type and local regulations. Kittens follow a similar schedule with initial shots at 6-8 weeks. Adult pets need regular booster shots. Rabies vaccination is often legally required."
+    },
+    {
+      "id": "dental_care",
+      "title": "Pet Dental Care",
+      "content": "Daily teeth brushing is ideal but 3-4 times weekly provides benefits. Professional dental cleanings by veterinarians help prevent tooth disease. Signs of dental problems include bad breath, difficulty eating, or tooth loss. Dental disease can affect overall health. Dental treats and food designed for dental health can help supplement brushing."
+    },
+    {
+      "id": "weight_management",
+      "title": "Pet Weight Management",
+      "content": "Obesity is common in pets and increases risk of diabetes, heart disease, and joint problems. Regular exercise and portion control are key. Consult your vet about appropriate portion sizes. Treats should be limited. Senior pets may need fewer calories. Regular weigh-ins help track progress. Weight loss should be gradual (1-2% of body weight per week)."
+    },
+    {
+      "id": "behavior_basics",
+      "title": "Pet Behavior Basics",
+      "content": "Behavioral issues often have underlying causes like lack of exercise, boredom, anxiety, or medical problems. Consistency in training and routines helps. Positive reinforcement works better than punishment. Some behaviors may require professional training or veterinary behavioral medications. Address behavioral issues early for best results."
+    }
+  ]
+}

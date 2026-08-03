@@ -1,0 +1,60 @@
+graph TB
+    subgraph Input["📥 Input Layer"]
+        User["User/Application"]
+        Owner["Owner & Pets"]
+        Tasks["Task Data"]
+    end
+
+    subgraph Core["🔧 Core Business Logic"]
+        Scheduler["Scheduler Engine<br/>(Priority, Time, Conflicts)"]
+        PlanGenerator["Plan Generator<br/>(Greedy Algorithm)"]
+    end
+
+    subgraph AI["🤖 AI Enhancement Layer"]
+        Retriever["RAG Retriever<br/>(Keyword Search)"]
+        KnowledgeBase["Knowledge Base<br/>(JSON, 15 Documents)"]
+        Validator["Recommendation Validator<br/>(Rules & Guardrails)"]
+        Integrator["AI Integrator<br/>(Orchestrator)"]
+    end
+
+    subgraph Evaluation["📊 Evaluation & Metrics"]
+        Metrics["Reliability Metrics<br/>(Confidence, Validation Rate)"]
+        Logging["Interaction Logging<br/>(for Debugging)"]
+    end
+
+    subgraph Output["📤 Output Layer"]
+        EnhancedPlan["Enhanced Plan<br/>(with Retrieval & Validation)"]
+        UI["Streamlit UI"]
+        Console["Console Display"]
+    end
+
+    User --> Owner
+    Owner --> Tasks
+    Tasks --> Scheduler
+    Scheduler --> PlanGenerator
+
+    PlanGenerator --> Integrator
+
+    Integrator --> Retriever
+    Retriever --> KnowledgeBase
+
+    Integrator --> Validator
+    KnowledgeBase --> Validator
+
+    Validator --> Metrics
+    Integrator --> Logging
+
+    PlanGenerator --> EnhancedPlan
+    Integrator --> EnhancedPlan
+
+    EnhancedPlan --> UI
+    EnhancedPlan --> Console
+
+    Metrics --> UI
+    Logging --> Console
+
+    style Input fill:#e1f5ff
+    style Core fill:#f3e5f5
+    style AI fill:#e8f5e9
+    style Evaluation fill:#fff3e0
+    style Output fill:#fce4ec

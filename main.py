@@ -1,4 +1,4 @@
-"""Manual demo script for verifying PawPal+ scheduling logic in the terminal."""
+"""PawPal+ with RAG and validation demo."""
 
 import os
 import sys
@@ -13,8 +13,9 @@ from tabulate import tabulate
 
 from formatting import category_label, priority_label
 from pawpal_system import Task, Pet, Owner, Scheduler
+from src.ai.integrator import AISchedulingIntegrator
 
-# Owner has 90 minutes available today — enough to fit some tasks, not all.
+# Owner has 90 minutes available today
 owner = Owner(name="Jordan", available_minutes=90)
 
 mochi = Pet(name="Mochi", species="dog")
@@ -32,23 +33,74 @@ whiskers.add_task(Task("Weekly grooming", 30, "medium", "grooming", frequency="w
 owner.add_pet(mochi)
 owner.add_pet(whiskers)
 
+# Generate base schedule
 scheduler = Scheduler()
 plan = scheduler.generate_plan(owner)
 
-print(f"Today's Schedule for {owner.name} ({owner.available_minutes} min available):\n")
-schedule_rows = [
-    [
-        "✅ OK" if item.included else "⏭️  SKIP",
-        item.pet_name,
-        item.task.title,
-        category_label(item.task.category),
-        priority_label(item.task.priority),
-        f"{item.task.duration_minutes} min",
-        item.reason,
-    ]
-    for item in plan
-]
-print(tabulate(schedule_rows, headers=["Status", "Pet", "Task", "Category", "Priority", "Duration", "Reason"]))
+# Enhance with RAG + validation
+ai_integrator = AISchedulingIntegrator()
+pet_species_map = {pet.name: pet.species for pet in owner.pets}
+enhanced_plan = ai_integrator.enhance_plan(plan, pet_species_map)
+
+print(f"Today's Schedule for {owner.name} ({owner.available_minutes} min available)\n")
+print("=" * 100)
+
+schedule_rows = []
+for item in enhanced_plan:
+    planned = item.planned_item
+    task = planned.task
+    retrieval_status = f"📚 {len(item.retrieval_results)} docs" if item.retrieval_results else "—"
+    validation = "✓" if item.validation_result and item.validation_result.is_valid else "⚠"
+
+    schedule_rows.append([
+        "✅" if planned.included else "⏭️",
+        planned.pet_name,
+        task.title,
+        category_label(task.category),
+        priority_label(task.priority),
+        f"{task.duration_minutes}m",
+        retrieval_status,
+        validation,
+    ])
+
+headers = ["Status", "Pet", "Task", "Category", "Priority", "Time", "References", "Valid"]
+print(tabulate(schedule_rows, headers=headers, tablefmt="grid"))
+
+print("\n" + "=" * 100)
+print("\nDETAILED RECOMMENDATIONS WITH RAG & VALIDATION:\n")
+
+for i, item in enumerate(enhanced_plan, 1):
+    planned = item.planned_item
+    task = planned.task
+
+    if planned.included:
+        print(f"\n{i}. ✅ {task.title} ({task.duration_minutes}m)")
+        print(f"   Pet: {planned.pet_name} | Category: {task.category} | Priority: {task.priority}")
+        print(f"   Reason: {planned.reason}")
+
+        # Show retrieval results
+        if item.retrieval_results:
+            print(f"   📚 Retrieved {len(item.retrieval_results)} relevant documents:")
+            for j, result in enumerate(item.retrieval_results[:2], 1):
+                print(f"      {j}. {result.title} (relevance: {result.relevance_score:.0%})")
+                print(f"         → {result.content[:100]}...")
+
+        # Show validation result
+        if item.validation_result:
+            print(f"   {item.get_validation_summary()}")
+            if item.validation_result.recommendations:
+                print(f"   Suggestions: {', '.join(item.validation_result.recommendations)}")
+
+print("\n" + "=" * 100)
+print("\nSYSTEM RELIABILITY METRICS:\n")
+metrics = ai_integrator.get_metrics()
+print(f"Total items evaluated: {metrics['total_items']}")
+print(f"Items validated: {metrics['items_validated']}")
+print(f"Valid recommendations: {metrics['valid_items']}")
+print(f"Validation success rate: {metrics.get('validation_success_rate', 0):.1%}")
+print(f"Average confidence score: {metrics['avg_confidence']:.2f}")
+print(f"Average retrieval score: {metrics['avg_retrieval_score']:.2f}")
+print("\n" + "=" * 100)
 
 # --- Sorting demo: tasks were added out of order above; sort_by_time fixes that. ---
 all_tasks = [task for _, task in owner.get_all_tasks()]
