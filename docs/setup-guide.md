@@ -34,12 +34,18 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-**3. Install Dependencies**
+**3. Install Python Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-**4. Verify**
+**4. Install Frontend (Optional)**
+```bash
+cd frontend
+npm install
+```
+
+**5. Verify Installation**
 ```bash
 pytest tests/ -v
 # Expected: 83/83 passing
@@ -49,25 +55,38 @@ pytest tests/ -v
 
 ## Running the System
 
-**Command-line demo:**
+**1. Command-line demo:**
 ```bash
 python main.py
 ```
 
-**Agentic reasoning demo:**
+**2. Agentic reasoning demo:**
 ```bash
 python agentic_demo.py
 ```
 
-**Web interface:**
+**3. Streamlit web UI:**
 ```bash
 streamlit run app.py
 # Opens: http://localhost:8501
 ```
 
-**Run tests:**
+**4. Flask + React (Full-Stack) ⭐**
+```bash
+# Terminal 1: Backend
+python flask_api.py
+# Runs on http://localhost:5000
+
+# Terminal 2: Frontend
+cd frontend
+npm start
+# Opens: http://localhost:3000
+```
+
+**5. Run all tests:**
 ```bash
 pytest tests/ -v
+# Expected: 83/83 passing
 ```
 
 ---
@@ -76,13 +95,16 @@ pytest tests/ -v
 
 ```
 ├── README.md                 # Main documentation
+├── QUICKSTART.md             # 5-min setup guide
+├── DEPLOYMENT.md             # Production deployment
 ├── PRESENTATION.md           # Demo Day pitch
-├── requirements.txt          # Dependencies
+├── requirements.txt          # Python dependencies
 ├── knowledge_base.json       # 15 pet care documents
 ├── pawpal_system.py          # Original scheduler
 ├── main.py                   # Demo: RAG + validation
 ├── agentic_demo.py           # Demo: 6-step reasoning
 ├── app.py                    # Streamlit web UI
+├── flask_api.py              # Flask REST API
 │
 ├── src/ai/
 │   ├── retriever.py          # RAG implementation
@@ -91,8 +113,22 @@ pytest tests/ -v
 │   └── agentic_planner.py    # Multi-step reasoning
 │
 ├── tests/
-│   ├── test_ai_system.py     # AI tests (22)
+│   ├── test_ai_system.py     # AI component tests (22)
+│   ├── test_groq_integration.py # Dual-mode tests (11)
+│   ├── test_agentic_planner.py # Planner tests (3)
 │   └── test_pawpal.py        # Scheduler tests (47)
+│
+├── frontend/                 # React UI (http://localhost:3000)
+│   ├── package.json
+│   ├── public/index.html
+│   └── src/
+│       ├── App.js
+│       ├── App.css
+│       ├── index.js
+│       └── components/
+│           ├── TaskManager.js
+│           ├── RecommendationEngine.js
+│           └── ABComparison.js
 │
 └── docs/
     ├── architecture.md       # System design
