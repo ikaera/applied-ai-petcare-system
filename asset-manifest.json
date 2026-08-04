@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/applied-ai-petcare-system/static/css/main.8965cad3.css",
+    "main.js": "/applied-ai-petcare-system/static/js/main.7941cecf.js",
+    "index.html": "/applied-ai-petcare-system/index.html",
+    "main.8965cad3.css.map": "/applied-ai-petcare-system/static/css/main.8965cad3.css.map",
+    "main.7941cecf.js.map": "/applied-ai-petcare-system/static/js/main.7941cecf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8965cad3.css",
+    "static/js/main.7941cecf.js"
+  ]
+}
