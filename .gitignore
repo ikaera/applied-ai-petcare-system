@@ -33,8 +33,11 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+.env.example
 
 # Project-specific
 data.json
 *.log
 reasoning_traces.json
+
+CLAUDE.md

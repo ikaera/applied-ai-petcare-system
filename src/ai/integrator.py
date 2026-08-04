@@ -1,8 +1,13 @@
-"""Integration layer: combines RAG retriever and validator with scheduling."""
+"""Integration layer: combines RAG retriever and validator with scheduling.
+
+Supports two retrieval modes:
+1. Heuristic (keyword-based) - fast, no API
+2. Groq API - semantic understanding with fallback to heuristic
+"""
 
 from typing import List, Dict, Optional
 from dataclasses import dataclass, field
-from src.ai.retriever import PetCareRetriever, RetrievalResult
+from src.ai.retriever import PetCareRetriever, GroqEnhancedRetriever, RetrievalResult
 from src.ai.validator import RecommendationValidator, ValidationResult
 from pawpal_system import Task, PlannedItem
 
@@ -38,12 +43,27 @@ class EnhancedPlannedItem:
 
 
 class AISchedulingIntegrator:
-    """Integrates RAG and validation into the scheduling workflow."""
+    """Integrates RAG and validation into the scheduling workflow.
 
-    def __init__(self, knowledge_base_path: str = "knowledge_base.json"):
-        """Initialize retriever and validator."""
-        self.retriever = PetCareRetriever(knowledge_base_path)
+    Supports two retriever modes:
+    - 'heuristic': Keyword-based (fast, no API needed)
+    - 'groq': Uses Groq API with heuristic fallback (semantic understanding)
+    """
+
+    def __init__(self, knowledge_base_path: str = "knowledge_base.json", retriever_mode: str = "heuristic"):
+        """Initialize retriever and validator.
+
+        Args:
+            knowledge_base_path: Path to knowledge base JSON
+            retriever_mode: 'heuristic' (default) or 'groq' (requires API key)
+        """
+        if retriever_mode == "groq":
+            self.retriever = GroqEnhancedRetriever(knowledge_base_path, use_api=True)
+        else:
+            self.retriever = PetCareRetriever(knowledge_base_path)
+
         self.validator = RecommendationValidator()
+        self.retriever_mode = retriever_mode
         self.metrics = {
             "total_items": 0,
             "items_validated": 0,
@@ -117,7 +137,14 @@ class AISchedulingIntegrator:
                 if metrics["items_validated"] > 0
                 else 0.0
             )
+        metrics["retriever_mode"] = self.get_retriever_mode()
         return metrics
+
+    def get_retriever_mode(self) -> str:
+        """Get current retriever mode info."""
+        if isinstance(self.retriever, GroqEnhancedRetriever):
+            return self.retriever.get_mode()
+        return "Heuristic (keyword-based)"
 
     def log_interaction(self, user_input: str, plan: List[EnhancedPlannedItem]) -> Dict:
         """Log an AI interaction for debugging and evaluation."""
