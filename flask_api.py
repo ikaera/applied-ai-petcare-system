@@ -54,7 +54,9 @@ def get_tasks():
                 "id": id(task),
                 "pet": pet.name,
                 "title": task.title,
-                "time": str(task.time),
+                "time": task.scheduled_time,
+                "duration": task.duration_minutes,
+                "category": task.category,
                 "priority": task.priority,
                 "completed": task.completed
             })
@@ -67,19 +69,21 @@ def add_task():
     data = request.json
     pet_name = data.get("pet")
     title = data.get("title")
-    time = data.get("time")
+    duration = data.get("duration_minutes", 15)
     priority = data.get("priority", "medium")
+    category = data.get("category", "enrichment")
+    scheduled_time = data.get("scheduled_time", "09:00")
 
     pet = next((p for p in demo_owner.pets if p.name == pet_name), None)
     if not pet:
         return jsonify({"error": f"Pet {pet_name} not found"}), 404
 
-    task = Task(title, time, priority)
-    pet.tasks.append(task)
+    task = Task(title, duration, priority, category, scheduled_time=scheduled_time)
+    pet.add_task(task)
 
     return jsonify({
         "message": f"Task added for {pet_name}",
-        "task": {"title": title, "time": time, "priority": priority}
+        "task": {"title": title, "duration": duration, "priority": priority, "category": category}
     }), 201
 
 
