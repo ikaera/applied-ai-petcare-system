@@ -2,7 +2,7 @@
 
 An intelligent pet care task scheduler enhanced with retrieval-augmented generation (RAG), automated validation, and multi-step reasoning.
 
-**Quick Start:** [Installation](#installation) • [Run](#usage) • [Examples](#examples) • [Tests](#testing--evaluation)
+**Quick Start:** [Installation](#installation) • [Run](#usage) • [Examples](#examples) • [Tests](#testing--evaluation) • [React Frontend](#full-stack-ui-flask--react)
 
 ---
 
@@ -11,6 +11,7 @@ An intelligent pet care task scheduler enhanced with retrieval-augmented generat
 - [Overview](#overview)
 - [The Problem & Solution](#the-problem--solution)
 - [AI Features](#ai-features)
+- [Full-Stack UI: Flask + React](#full-stack-ui-flask--react)
 - [Dual-Mode Retrieval](#dual-mode-retrieval-new)
 - [Installation](#installation)
 - [Quick Reference](#quick-reference)
@@ -86,6 +87,60 @@ Flags over-generalizations ("all dogs need X"). Ensures individual pet context c
 
 ---
 
+## Full-Stack UI: Flask + React
+
+A modern web interface for interacting with the AI system.
+
+### What You Get
+
+**Backend:** Flask REST API with 7 endpoints
+- Task management (add, list, complete)
+- Single recommendations with validation
+- A/B comparison of retrieval modes
+- Daily plan generation
+
+**Frontend:** React UI with 3 feature tabs
+1. **Task Manager** - Schedule tasks for multiple pets
+2. **Recommendation Engine** - Get AI recommendations (choose retrieval mode)
+3. **A/B Test** - Compare Heuristic vs Groq API side-by-side
+
+### Quick Start
+
+**5-minute setup:**
+```bash
+# Terminal 1: Backend
+pip install -r requirements.txt
+python flask_api.py
+
+# Terminal 2: Frontend
+cd frontend
+npm install
+npm start
+```
+
+Opens at `http://localhost:3000` (React) connected to `http://localhost:5000` (Flask)
+
+### Architecture
+
+```
+React UI (http://localhost:3000)
+    ↓ axios calls
+Flask API (http://localhost:5000)
+    ↓
+Python AI System (retriever, validator, integrator)
+```
+
+### Deployment
+
+- **Frontend:** GitHub Pages (`https://ikaera.github.io/applied-ai-petcare-system`)
+- **Backend:** Render.com or Railway (free tier)
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for full production setup.
+
+**See [QUICKSTART.md](QUICKSTART.md) for detailed local setup.**
+
+---
+
 ## Architecture
 
 See [docs/architecture.md](docs/architecture.md) for detailed system design.
@@ -104,8 +159,10 @@ Input → Scheduler → AI Integrator {
 ## Installation
 
 ### Prerequisites
-- Python 3.8+
-- pip (Python package manager)
+- **Python** 3.8+
+- **pip** (Python package manager)
+- **Node.js** 14+ (for React frontend, optional)
+- **npm** (comes with Node.js)
 
 ### Quick Start
 
@@ -140,15 +197,43 @@ pytest tests/ -v
 # Expected: 83/83 tests passing
 ```
 
+### Frontend Setup (Optional)
+
+To use the React UI:
+
+**5. Install Node dependencies**
+```bash
+cd frontend
+npm install
+```
+
+**6. Done!** Now you can run React + Flask together (see [Quick Reference](#quick-reference))
+
 ---
 
 ## Quick Reference
 
+**Python Command-Line:**
 ```bash
 pytest tests/ -v              # Run all tests (83/83)
 python main.py                # Basic demo (RAG + validation)
 python agentic_demo.py        # 6-step reasoning trace
-streamlit run app.py          # Web interface (http://localhost:8501)
+streamlit run app.py          # Streamlit UI (http://localhost:8501)
+```
+
+**Full-Stack (Flask + React):**
+```bash
+python flask_api.py           # Start backend (http://localhost:5000)
+cd frontend && npm start      # Start frontend (http://localhost:3000)
+npm run build                 # Build for production
+npm run deploy                # Deploy to GitHub Pages
+```
+
+**Testing & Development:**
+```bash
+python comparison_demo.py     # Compare retrieval modes
+python groq_mode_demo.py      # Test with Groq API
+python ab_testing.py          # A/B test both modes
 ```
 
 ---
@@ -182,7 +267,7 @@ python agentic_demo.py
 - Overall plan viability score
 - Interaction log with detailed reasoning
 
-### Option 3: Web Interface
+### Option 3: Web Interface (Streamlit)
 
 Interactive web interface for exploring the system:
 ```bash
@@ -190,6 +275,26 @@ streamlit run app.py
 ```
 
 Opens in browser at `http://localhost:8501`
+
+### Option 4: Full-Stack (Flask + React) ⭐ **Recommended for Portfolio**
+
+Modern UI with task management, recommendations, and A/B testing:
+
+```bash
+# Terminal 1: Start Flask backend
+python flask_api.py
+
+# Terminal 2: Start React frontend
+cd frontend
+npm start
+```
+
+Opens at `http://localhost:3000` with:
+- **Task Manager** - Schedule tasks
+- **Recommendation Engine** - Get recommendations with chosen retrieval mode
+- **A/B Test** - Compare Heuristic vs Groq API
+
+**See [QUICKSTART.md](QUICKSTART.md) for 5-minute setup guide.**
 
 ---
 
@@ -388,6 +493,10 @@ Run: `pytest tests/test_groq_integration.py -v`
 
 ## Documentation
 
+**Getting Started:**
+- [QUICKSTART.md](QUICKSTART.md) — 5-minute setup (Flask + React)
+- [DEPLOYMENT.md](DEPLOYMENT.md) — Production deployment guide
+
 **Technical References:**
 - [docs/architecture.md](docs/architecture.md) — System design & component interactions
 - [docs/testing.md](docs/testing.md) — Test strategy & evaluation
@@ -409,12 +518,15 @@ Run: `pytest tests/test_groq_integration.py -v`
 
 I build AI systems that are **trustworthy, transparent, and genuinely useful**—not just technically impressive.
 
+- **Full-Stack Development:** Flask backend + React frontend, REST API, responsive UI
 - **Responsible AI:** Confidence scores, guardrails, honest about uncertainty
 - **Systems Thinking:** Integration + testing + monitoring + continuous improvement
 - **Practical Problem-Solving:** Chose simplicity over over-engineering (keyword retrieval, rule-based validation)
 - **Quality & Reliability:** 83 tests (100% passing), modular architecture
-- **User-Centric Design:** Built for real pet owners, not just impressive demos
+- **User-Centric Design:** Built for real pet owners, interactive web UI
+- **AI/ML Integration:** Dual-mode retrieval (heuristic + semantic), validation guardrails
 - **Effective AI Collaboration:** Used Claude well for architecture & strategy, rejected over-engineered suggestions
+- **Modern Web Stack:** React hooks, Flask blueprints, CORS, responsive CSS
 
 **GitHub:** https://github.com/ikaera/applied-ai-petcare-system
 
