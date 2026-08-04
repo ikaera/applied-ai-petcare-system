@@ -222,20 +222,38 @@ npm install
 
 ## Quick Reference
 
-**Essential Commands:**
-```bash
-# Tests
-pytest tests/ -v                          # All 83 tests
+### Prerequisites Met?
+```powershell
+# Check Python
+python --version          # Need 3.8+
 
-# Demos (Command-Line)
+# Check Node.js (for React - optional)
+node --version            # Need 14+
+
+# Activate virtual environment (always do this first!)
+.venv\Scripts\activate    # Windows
+# OR
+source .venv/bin/activate # macOS/Linux
+```
+
+### Essential Commands
+
+```powershell
+# ALWAYS activate venv first:
+.venv\Scripts\activate
+
+# Tests
+pytest tests/ -v                          # All 83 tests (100% passing)
+
+# Command-Line Demos
 python main.py                            # RAG + validation demo
-python agentic_demo.py                    # 6-step reasoning
+python agentic_demo.py                    # 6-step reasoning pipeline
 python ab_testing.py                      # Compare retrieval modes
 
-# UIs
-streamlit run app.py                      # Streamlit (port 8501)
-python flask_api.py                       # Flask backend (port 5000)
-cd frontend && npm start                  # React UI (port 3000)
+# Web UIs (pick one)
+streamlit run app.py                      # Streamlit UI (http://localhost:8501)
+python flask_api.py                       # Flask backend (http://localhost:5000)
+cd frontend && npm start                  # React UI (http://localhost:3000)
 ```
 
 ---
@@ -244,38 +262,58 @@ cd frontend && npm start                  # React UI (port 3000)
 
 **Prerequisites:** Python 3.8+, Node.js 14+ (optional for React)
 
-### Backend Only
+### Option A: Command-Line Only (Fastest)
 
-```bash
-# 1. Install
+```powershell
+# 1. Activate virtual environment
+.venv\Scripts\activate
+
+# 2. Install dependencies
 pip install -r requirements.txt
 
-# 2. Run any demo
+# 3. Run any demo
 python main.py
 pytest tests/ -v
 
-# Done! (no frontend needed)
+# Done! No UI needed, just terminal output
 ```
 
-### Full-Stack (Backend + React UI)
+### Option B: Streamlit Web UI
 
-```bash
-# Terminal 1: Backend
+```powershell
+# 1. Activate virtual environment
+.venv\Scripts\activate
+
+# 2. Install dependencies
 pip install -r requirements.txt
+
+# 3. Run Streamlit
+streamlit run app.py
+
+# Opens http://localhost:8501
+# Shows: Task manager, schedule generator, validation results
+```
+
+### Option C: Flask + React (Full-Stack) ⭐ Recommended
+
+```powershell
+# Terminal 1: Backend
+.venv\Scripts\activate
 python flask_api.py
 # Runs on http://localhost:5000
 
 # Terminal 2: Frontend
 cd frontend
-npm install
+npm install                    # First time only
 npm start
 # Opens http://localhost:3000
 ```
 
-**Verify it works:**
-- React UI loads at http://localhost:3000
-- Add a task, get a recommendation, compare retrieval modes
-- All 83 tests pass: `pytest tests/ -v`
+**Features shown:**
+- Task Manager (add/view tasks)
+- Recommendation Engine (test with chosen retrieval mode)
+- A/B Test (compare Heuristic vs Groq API)
+- Live validation with confidence scores
 
 ---
 
@@ -284,21 +322,28 @@ npm start
 ### Option 1: Command-Line Demo
 
 Run the complete system with example data:
-```bash
+
+```powershell
+# Activate virtual environment first!
+.venv\Scripts\activate
+
+# Then run demo
 python main.py
 ```
 
 **Output:**
 - Daily schedule table with task priorities
 - Retrieved documents for each task
-- Validation results (PASS/REVIEW)
+- Validation results (PASS/REVIEW/BIASED)
 - System reliability metrics
 - Confidence scores (0.0–1.0)
 
 ### Option 2: Agentic Planning Demo
 
 See the 6-step reasoning pipeline with confidence tracking:
-```bash
+
+```powershell
+.venv\Scripts\activate
 python agentic_demo.py
 ```
 
@@ -308,41 +353,62 @@ python agentic_demo.py
 - Overall plan viability score
 - Interaction log with detailed reasoning
 
-### Option 3: Web Interface (Streamlit)
+### Option 3: Streamlit Web UI
 
 Interactive web interface for exploring the system:
-```bash
+
+```powershell
+# Activate virtual environment
+.venv\Scripts\activate
+
+# Run Streamlit
 streamlit run app.py
 ```
 
-Opens in browser at `http://localhost:8501`
+Opens at: **http://localhost:8501**
 
-### Option 4: Full-Stack (Flask + React) ⭐ **Recommended for Portfolio**
+**Features:**
+- Enter pet information and constraints
+- Add care tasks (feeding, exercise, medical, etc.)
+- Generate optimal daily schedule
+- View validation results
+- See confidence scores
+- Explore retrieved documents
 
-Modern UI with task management, recommendations, and A/B testing:
+### Option 4: Flask + React (Full-Stack) ⭐ **Recommended for Portfolio**
 
-```bash
+Professional modern UI with three feature tabs:
+
+```powershell
 # Terminal 1: Start Flask backend
+.venv\Scripts\activate
 python flask_api.py
+# Runs on http://localhost:5000
 
-# Terminal 2: Start React frontend
+# Terminal 2: Start React frontend (new terminal)
 cd frontend
+npm install              # First time only
 npm start
 ```
 
-Opens at `http://localhost:3000` with:
-- **Task Manager** - Schedule tasks
-- **Recommendation Engine** - Get recommendations with chosen retrieval mode
-- **A/B Test** - Compare Heuristic vs Groq API
+Opens at: **http://localhost:3000**
 
-**See [QUICKSTART.md](QUICKSTART.md) for 5-minute setup guide.**
+**Three Feature Tabs:**
+
+| Tab | Description |
+|-----|-------------|
+| **Task Manager** | Add tasks, set time/priority, manage multiple pets |
+| **Recommendation Engine** | Test recommendations with chosen retrieval mode (Heuristic or Groq API), see validation + confidence |
+| **A/B Test** | Compare results from both retrieval modes side-by-side |
+
 
 ---
 
 ## Examples
 
 ### Example 1: Basic Demo
-```bash
+```powershell
+.venv\Scripts\activate
 python main.py
 ```
 
@@ -354,7 +420,8 @@ python main.py
 ---
 
 ### Example 2: Agentic Reasoning
-```bash
+```powershell
+.venv\Scripts\activate
 python agentic_demo.py
 ```
 
