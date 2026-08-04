@@ -31,7 +31,7 @@
 **Documentation:**
 - `README.md` "The Problem & Solution" section
 - `docs/architecture.md` "Components" section lists original Scheduler
-- `docs/workflow.md` "Phase 1: Understand & Plan" describes original system
+- README.md "Overview" section describes original system
 - `pawpal_system.py` contains original Owner, Pet, Task classes
 
 **Status:** ✅ **COMPLETE** - Clear, accurate, well-documented
@@ -212,9 +212,9 @@ Reason: Over-generalization, missing individual context
 - ✅ Test results (83/83)
 
 **Additional Setup Docs:**
-- `QUICKSTART.md` - 5-minute local setup
-- `docs/setup-guide.md` - Detailed installation
-- `DEPLOYMENT.md` - Production deployment
+- README.md "5-Minute Setup" - Quick local setup
+- README.md "Installation" - Detailed setup steps
+- `docs/deployment.md` - Production deployment
 - `frontend/README.md` - React-specific setup
 
 **Sample Input/Output:**
@@ -493,7 +493,7 @@ To verify all requirements are met:
 - [ ] `docs/architecture.md` - Contains Mermaid diagram
 - [ ] `main.py`, `agentic_demo.py` - Working demos
 - [ ] `src/ai/validator.py` - Guardrails with confidence scores
-- [ ] `docs/setup-guide.md` - Step-by-step installation
+- [ ] README.md "Installation" - Step-by-step installation
 - [ ] `reflection.md` - AI collaboration reflection
 
 **Stretch Features:**
