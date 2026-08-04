@@ -280,6 +280,83 @@ See [ai_interactions.md](ai_interactions.md) for detailed implementation reasoni
 
 ---
 
+## Dual-Mode Retrieval (NEW)
+
+The system now supports **two retrieval modes** to balance speed and semantic understanding:
+
+### Mode 1: Heuristic (Keyword-Based)
+- **Speed:** Fast, no API latency
+- **Dependencies:** None (no API key needed)
+- **Best for:** Development, testing, simple queries
+- **How:** TF-IDF keyword matching with stop-word filtering
+
+```python
+from src.ai.integrator import AISchedulingIntegrator
+
+# Heuristic mode (default)
+integrator = AISchedulingIntegrator(retriever_mode="heuristic")
+```
+
+### Mode 2: Groq API (Semantic)
+- **Speed:** Slightly slower (API call overhead)
+- **Dependencies:** Groq API key (free from console.groq.com)
+- **Best for:** Complex queries, semantic understanding, production
+- **How:** Groq LLM ranks documents by relevance, falls back to heuristic if API fails
+
+```python
+# Groq API mode (with fallback)
+integrator = AISchedulingIntegrator(retriever_mode="groq")
+```
+
+### Setup for Groq API
+
+1. Get free API key: https://console.groq.com (no credit card required)
+2. Copy `.env.example` to `.env`
+3. Add your key: `GROQ_API_KEY=your_key_here`
+4. Run: `pip install -r requirements.txt` (includes groq, python-dotenv)
+
+### Comparison & Testing
+
+Three tools included to help you choose and compare:
+
+1. **`comparison_demo.py`** - Side-by-side comparison of both modes
+   ```bash
+   python comparison_demo.py
+   ```
+
+2. **`groq_mode_demo.py`** - Full system walkthrough using Groq API
+   ```bash
+   python groq_mode_demo.py
+   ```
+
+3. **`ab_testing.py`** - A/B test both modes on real scenarios
+   ```bash
+   python ab_testing.py
+   ```
+
+### Why Two Modes?
+
+| Scenario | Heuristic | Groq API |
+|----------|-----------|----------|
+| Quick prototype | ✓ | |
+| No API key available | ✓ | |
+| Development/testing | ✓ | |
+| Complex semantic queries | | ✓ |
+| Production with fallback | ✓ | ✓ |
+| Response time critical | ✓ | |
+
+### Tests
+
+Both modes thoroughly tested (11 new integration tests):
+- Fallback behavior when API unavailable
+- Consistent output format between modes
+- Validation works with both retrievers
+- Metrics include mode information
+
+Run: `pytest tests/test_groq_integration.py -v`
+
+---
+
 ## Reflection
 
 **What surprised me:** Simplicity wins. Keyword retrieval works better than embeddings for structured pet care. Rule-based validation more trustworthy than ML for safety decisions.
