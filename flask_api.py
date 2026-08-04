@@ -8,7 +8,7 @@ from flask_cors import CORS
 from datetime import datetime
 import json
 from pawpal_system import Owner, Pet, Task
-from src.ai.integrator import Integrator
+from src.ai.integrator import AISchedulingIntegrator
 
 app = Flask(__name__)
 CORS(app)
@@ -16,13 +16,13 @@ CORS(app)
 # Load sample data
 def load_sample_data():
     """Load sample owner and pets for demo."""
-    owner = Owner("Alex")
+    owner = Owner("Alex", 480)  # 480 minutes = 8 hours per day
     owner.pets.append(Pet("Mochi", "dog", 3))
     owner.pets.append(Pet("Luna", "cat", 2))
     return owner
 
 # Initialize integrator
-integrator = Integrator(retriever_mode="heuristic")
+integrator = AISchedulingIntegrator(retriever_mode="heuristic")
 
 # Global state for demo
 demo_owner = load_sample_data()
