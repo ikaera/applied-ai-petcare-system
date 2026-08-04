@@ -11,7 +11,9 @@ An intelligent pet care task scheduler enhanced with retrieval-augmented generat
 - [Overview](#overview)
 - [The Problem & Solution](#the-problem--solution)
 - [AI Features](#ai-features)
+- [Dual-Mode Retrieval](#dual-mode-retrieval-new)
 - [Installation](#installation)
+- [Quick Reference](#quick-reference)
 - [Usage](#usage)
 - [Examples](#examples)
 - [Testing](#testing--evaluation)
@@ -24,6 +26,21 @@ An intelligent pet care task scheduler enhanced with retrieval-augmented generat
 ## Overview
 
 **PawPal+** is a pet care task scheduler enhanced with AI. It helps pet owners organize multiple pets' care tasks into realistic daily schedules while ensuring recommendations are safe, fair, and knowledge-backed.
+
+### In Simple Terms
+
+Think of PawPal+ as a smart assistant that:
+1. **Knows pet care** - Has a knowledge base of 15 pet care documents
+2. **Checks safety** - Validates every recommendation (medical tasks need vet docs)
+3. **Explains decisions** - Shows confidence scores so you know when to trust it
+4. **Handles complexity** - Works with multiple pets and conflicting schedules
+
+**Try it:**
+```bash
+python main.py              # See it in action
+python ab_testing.py        # Compare heuristic vs AI modes
+python comparison_demo.py   # See how it ranks documents
+```
 
 ---
 

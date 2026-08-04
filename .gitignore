@@ -29,11 +29,11 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Environment
+# Environment (never commit real API keys)
 .env
 .env.local
 .env.*.local
-.env.example
+# .env.example is committed (template with placeholder)
 
 # Project-specific
 data.json
