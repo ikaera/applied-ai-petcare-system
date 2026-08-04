@@ -17,8 +17,8 @@ CORS(app)
 def load_sample_data():
     """Load sample owner and pets for demo."""
     owner = Owner("Alex", 480)  # 480 minutes = 8 hours per day
-    owner.pets.append(Pet("Mochi", "dog", 3))
-    owner.pets.append(Pet("Luna", "cat", 2))
+    owner.pets.append(Pet("Mochi", "dog"))
+    owner.pets.append(Pet("Luna", "cat"))
     return owner
 
 # Initialize integrator
@@ -38,7 +38,7 @@ def health():
 def get_pets():
     """Get all pets for the owner."""
     pets = [
-        {"name": pet.name, "species": pet.species, "age": pet.age}
+        {"name": pet.name, "species": pet.species}
         for pet in demo_owner.pets
     ]
     return jsonify({"pets": pets})
