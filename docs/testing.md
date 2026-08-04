@@ -2,7 +2,7 @@
 
 ## Overview
 
-The project has **72 automated tests** (100% passing). Tests verify both functionality and AI behavior.
+The project has **83 automated tests** (100% passing). Tests verify both functionality and AI behavior.
 
 ---
 
@@ -18,7 +18,7 @@ The project has **72 automated tests** (100% passing). Tests verify both functio
 | End-to-End | 1 | Full workflow (scheduling → RAG → validation) |
 | Scheduler | 47 | Original system still works (task management, conflicts, etc.) |
 
-**Total: 72 tests**
+**Total: 83 tests**
 
 ---
 

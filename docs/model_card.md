@@ -8,14 +8,14 @@
 | **Type** | Pet care scheduler with RAG + validation |
 | **Version** | 1.0 |
 | **Framework** | Python, keyword-based RAG, rule-based validation |
-| **Test Coverage** | 72 tests (100% passing) |
+| **Test Coverage** | 83 tests (100% passing) |
 
 ---
 
 ## What Works Well
 
 ✅ **Retrieval Effectiveness** - 95% of searches return relevant documents  
-✅ **Validation Robustness** - Only 1 false negative in 72 test cases  
+✅ **Validation Robustness** - Only 1 false negative in 83 test cases  
 ✅ **Confidence Scores** - Transparently show uncertainty (0.0-1.0)  
 ✅ **Bias Detection** - Catches over-generalizations  
 ✅ **Explainability** - Users see why recommendations were made  

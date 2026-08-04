@@ -137,7 +137,7 @@ pip install -r requirements.txt
 **4. Verify installation**
 ```bash
 pytest tests/ -v
-# Expected: 72/72 tests passing
+# Expected: 83/83 tests passing
 ```
 
 ---
@@ -145,7 +145,7 @@ pytest tests/ -v
 ## Quick Reference
 
 ```bash
-pytest tests/ -v              # Run all tests (72/72)
+pytest tests/ -v              # Run all tests (83/83)
 python main.py                # Basic demo (RAG + validation)
 python agentic_demo.py        # 6-step reasoning trace
 streamlit run app.py          # Web interface (http://localhost:8501)
@@ -221,7 +221,7 @@ python agentic_demo.py
 ### Example 3: Full Test Suite
 ```bash
 pytest tests/ -v
-# Result: 72/72 passing (100%)
+# Result: 83/83 passing (100%)
 ```
 
 **Coverage:** Retriever (6), Validator (13), Integrator (5), End-to-End (1), Scheduler (47)
@@ -232,7 +232,7 @@ pytest tests/ -v
 
 ## Testing & Evaluation
 
-**72 tests, 100% passing.** See [docs/testing.md](docs/testing.md) for full strategy.
+**83 tests, 100% passing.** See [docs/testing.md](docs/testing.md) for full strategy.
 
 ```bash
 pytest tests/ -v
@@ -412,7 +412,7 @@ I build AI systems that are **trustworthy, transparent, and genuinely useful**â€
 - **Responsible AI:** Confidence scores, guardrails, honest about uncertainty
 - **Systems Thinking:** Integration + testing + monitoring + continuous improvement
 - **Practical Problem-Solving:** Chose simplicity over over-engineering (keyword retrieval, rule-based validation)
-- **Quality & Reliability:** 72 tests (100% passing), modular architecture
+- **Quality & Reliability:** 83 tests (100% passing), modular architecture
 - **User-Centric Design:** Built for real pet owners, not just impressive demos
 - **Effective AI Collaboration:** Used Claude well for architecture & strategy, rejected over-engineered suggestions
 

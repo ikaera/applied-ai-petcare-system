@@ -42,7 +42,7 @@ pip install -r requirements.txt
 **4. Verify**
 ```bash
 pytest tests/ -v
-# Expected: 72/72 passing
+# Expected: 83/83 passing
 ```
 
 ---

@@ -5,7 +5,7 @@
 ✅ RAG retrieval (keyword-based)  
 ✅ Validation guardrails (5 rules + bias detection)  
 ✅ Agentic planning (6-step reasoning)  
-✅ 72 automated tests (100% passing)  
+✅ 83 automated tests (100% passing)  
 ✅ Modular architecture  
 
 ---
@@ -98,7 +98,7 @@
 **Current approach:**
 - Simple (no external APIs, embeddings, or complex ML)
 - Explainable (users see exactly why decisions were made)
-- Tested (72 tests, 100% passing)
+- Tested (83 tests, 100% passing)
 - Reliable (rule-based, no model failures)
 
 **Future enhancements will:**
