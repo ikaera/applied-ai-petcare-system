@@ -1,5 +1,14 @@
 # Rubric Verification: Applied AI System (Project 4)
 
+## Table of Contents
+
+- [Required Features (21 pts)](#required-features-21-pts)
+- [Stretch Features (8 pts)](#stretch-features-8-pts)
+- [Summary](#summary)
+- [Quick Verification Checklist](#-quick-verification-checklist)
+
+---
+
 ## Total Score: 21/21 Required + 8/8 Bonus = 29/29 ✅
 
 ---

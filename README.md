@@ -8,19 +8,30 @@ An intelligent pet care task scheduler enhanced with retrieval-augmented generat
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [The Problem & Solution](#the-problem--solution)
-- [AI Features](#ai-features)
-- [Full-Stack UI: Flask + React](#full-stack-ui-flask--react)
-- [Dual-Mode Retrieval](#dual-mode-retrieval-new)
-- [Installation](#installation)
-- [Quick Reference](#quick-reference)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Testing](#testing--evaluation)
-- [Design Decisions](#design-decisions)
-- [Reflection](#reflection)
-- [Documentation](#documentation)
+**Getting Started:**
+- [Quick Reference](#quick-reference) — Common commands
+- [5-Minute Setup](#5-minute-setup) — Fast local setup
+- [Installation](#installation) — Full installation steps
+
+**Understanding the System:**
+- [Overview](#overview) — What is PawPal+
+- [The Problem & Solution](#the-problem--solution) — Why it matters
+- [AI Features](#ai-features) — Core AI components
+- [Full-Stack UI: Flask + React](#full-stack-ui-flask--react) — Web interface
+
+**Using & Testing:**
+- [Usage](#usage) — How to run (4 options)
+- [Examples](#examples) — Demo walkthroughs
+- [Testing](#testing--evaluation) — Test suite & evaluation
+- [Dual-Mode Retrieval](#dual-mode-retrieval-new) — Heuristic vs Groq API
+
+**Advanced:**
+- [Design Decisions](#design-decisions) — Architecture choices
+- [Reflection](#reflection) — AI collaboration & learning
+- [Documentation](#documentation) — All technical docs
+
+**For Grading:**
+- [Rubric Verification](RUBRIC_VERIFICATION.md) — 29/29 points verified
 
 ---
 
@@ -137,8 +148,6 @@ Python AI System (retriever, validator, integrator)
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for full production setup.
 
-**See [QUICKSTART.md](QUICKSTART.md) for detailed local setup.**
-
 ---
 
 ## Architecture
@@ -213,28 +222,60 @@ npm install
 
 ## Quick Reference
 
-**Python Command-Line:**
+**Essential Commands:**
 ```bash
-pytest tests/ -v              # Run all tests (83/83)
-python main.py                # Basic demo (RAG + validation)
-python agentic_demo.py        # 6-step reasoning trace
-streamlit run app.py          # Streamlit UI (http://localhost:8501)
+# Tests
+pytest tests/ -v                          # All 83 tests
+
+# Demos (Command-Line)
+python main.py                            # RAG + validation demo
+python agentic_demo.py                    # 6-step reasoning
+python ab_testing.py                      # Compare retrieval modes
+
+# UIs
+streamlit run app.py                      # Streamlit (port 8501)
+python flask_api.py                       # Flask backend (port 5000)
+cd frontend && npm start                  # React UI (port 3000)
 ```
 
-**Full-Stack (Flask + React):**
+---
+
+## 5-Minute Setup
+
+**Prerequisites:** Python 3.8+, Node.js 14+ (optional for React)
+
+### Backend Only
+
 ```bash
-python flask_api.py           # Start backend (http://localhost:5000)
-cd frontend && npm start      # Start frontend (http://localhost:3000)
-npm run build                 # Build for production
-npm run deploy                # Deploy to GitHub Pages
+# 1. Install
+pip install -r requirements.txt
+
+# 2. Run any demo
+python main.py
+pytest tests/ -v
+
+# Done! (no frontend needed)
 ```
 
-**Testing & Development:**
+### Full-Stack (Backend + React UI)
+
 ```bash
-python comparison_demo.py     # Compare retrieval modes
-python groq_mode_demo.py      # Test with Groq API
-python ab_testing.py          # A/B test both modes
+# Terminal 1: Backend
+pip install -r requirements.txt
+python flask_api.py
+# Runs on http://localhost:5000
+
+# Terminal 2: Frontend
+cd frontend
+npm install
+npm start
+# Opens http://localhost:3000
 ```
+
+**Verify it works:**
+- React UI loads at http://localhost:3000
+- Add a task, get a recommendation, compare retrieval modes
+- All 83 tests pass: `pytest tests/ -v`
 
 ---
 
@@ -493,22 +534,20 @@ Run: `pytest tests/test_groq_integration.py -v`
 
 ## Documentation
 
-**Getting Started:**
-- [QUICKSTART.md](QUICKSTART.md) — 5-minute setup (Flask + React)
-- [DEPLOYMENT.md](DEPLOYMENT.md) — Production deployment guide
-
 **Technical References:**
-- [docs/architecture.md](docs/architecture.md) — System design & component interactions
-- [docs/testing.md](docs/testing.md) — Test strategy & evaluation
-- [docs/setup-guide.md](docs/setup-guide.md) — Detailed installation
+- [docs/architecture.md](docs/architecture.md) — System design, Mermaid diagram, components
+- [docs/testing.md](docs/testing.md) — Test strategy & 83-test suite
+- [docs/deployment.md](docs/deployment.md) — Production deployment (Flask + React)
 - [docs/extensions-roadmap.md](docs/extensions-roadmap.md) — Future features
 - [docs/model_card.md](docs/model_card.md) — Responsible AI & limitations
-- [docs/workflow.md](docs/workflow.md) — Development process
-- [ai_interactions.md](ai_interactions.md) — Implementation reasoning
-- [reflection.md](reflection.md) — System design reflection
 
-**For Presentations:**
-- [PRESENTATION.md](PRESENTATION.md) — 5-7 min Demo Day pitch (speaker notes)
+**Deep Dives:**
+- [ai_interactions.md](ai_interactions.md) — Implementation decisions & design trade-offs
+- [reflection.md](reflection.md) — System design thinking & AI collaboration
+- [RUBRIC_VERIFICATION.md](RUBRIC_VERIFICATION.md) — Rubric checklist (29/29 points)
+
+**Presentations:**
+- [PRESENTATION.md](PRESENTATION.md) — Demo Day pitch (speaker notes)
 
 ---
 

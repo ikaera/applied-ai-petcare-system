@@ -1,5 +1,17 @@
 # Future Roadmap
 
+## Table of Contents
+
+- [Current State](#current-state)
+- [Short Term (1-2 weeks)](#short-term-1-2-weeks)
+- [Medium Term (1-2 months)](#medium-term-1-2-months)
+- [Long Term (3+ months)](#long-term-3-months)
+- [Why These Improvements?](#why-these-improvements)
+- [Architecture Ready For](#architecture-ready-for)
+- [Trade-offs](#trade-offs)
+
+---
+
 ## Current State
 
 ✅ RAG retrieval (keyword-based)  

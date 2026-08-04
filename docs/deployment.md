@@ -1,8 +1,18 @@
 # PawPal+ Deployment Guide
 
-Complete setup for running Flask backend + React frontend locally and deploying to production.
+## Table of Contents
+
+- [Local Development](#local-development)
+- [Production Deployment](#production-deployment)
+- [Configuration](#configuration)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [File Structure](#file-structure)
+- [Next Steps](#next-steps)
 
 ---
+
+Complete setup for running Flask backend + React frontend locally and deploying to production.
 
 ## Local Development
 

@@ -1,5 +1,18 @@
 # System Architecture
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Full-Stack Layers](#full-stack-layers)
+- [System Architecture Diagram](#system-architecture-diagram)
+- [Components](#components)
+- [Data Flow](#data-flow)
+- [Design Principles](#design-principles)
+- [Key Files](#key-files)
+- [Why This Architecture?](#why-this-architecture)
+
+---
+
 ## Overview
 
 PawPal+ combines a scheduling engine with AI features. The system is modular: each component is independent and testable.

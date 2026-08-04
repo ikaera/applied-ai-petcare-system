@@ -1,5 +1,17 @@
 # Testing Strategy
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Test Structure](#test-structure)
+- [What Tests Verify](#what-tests-verify)
+- [Running Tests](#running-tests)
+- [Key Test Cases](#key-test-cases)
+- [Test Quality](#test-quality)
+- [Future Improvements](#future-improvements)
+
+---
+
 ## Overview
 
 The project has **83 automated tests** (100% passing). Tests verify both functionality and AI behavior.

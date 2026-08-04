@@ -1,5 +1,13 @@
 # PawPal+ Project Reflection
 
+## Table of Contents
+
+- [System Design](#1-system-design)
+- [AI Collaboration](#ai-collaboration)
+- [Key Insights](#key-insights)
+
+---
+
 ## 1. System Design
 
 **a. Initial design**

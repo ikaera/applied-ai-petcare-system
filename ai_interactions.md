@@ -1,5 +1,16 @@
 # AI Interactions & Implementation Log
 
+## Table of Contents
+
+- [Overview](#applied-ai-extension-rag--validation--testing)
+- [Phase 1: RAG Retriever](#phase-1-rag-retriever-implementation)
+- [Phase 2: Validation & Guardrails](#phase-2-validation--guardrails)
+- [Phase 3: Agentic Planning](#phase-3-agentic-planning)
+- [Phase 4: Integration & Testing](#phase-4-integration--testing)
+- [Lessons Learned](#lessons-learned)
+
+---
+
 ## Applied AI Extension: RAG + Validation + Testing
 
 **Date:** August 2, 2026  

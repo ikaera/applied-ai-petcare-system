@@ -1,5 +1,20 @@
 # Model Card: PawPal+ AI System
 
+## Table of Contents
+
+- [System Overview](#system-overview)
+- [What Works Well](#what-works-well)
+- [Known Limitations](#known-limitations)
+- [Potential Risks & Safeguards](#potential-risks--safeguards)
+- [Bias Analysis](#bias-analysis)
+- [AI Collaboration Insights](#ai-collaboration-insights)
+- [Ethical Commitments](#ethical-commitments)
+- [When NOT to Use](#when-not-to-use)
+- [Future Improvements](#future-improvements)
+- [Summary](#summary)
+
+---
+
 ## System Overview
 
 | Aspect | Details |
