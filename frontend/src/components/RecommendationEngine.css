@@ -1,0 +1,206 @@
+.recommendation-engine {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-engine h2 {
+  color: #667eea;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+}
+
+.rec-form {
+  background: #f5f5f5;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-family: inherit;
+  background: white;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.rec-form button {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+.rec-form button:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.rec-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.rec-result {
+  background: #f9f9f9;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eee;
+}
+
+.result-header h3 {
+  color: #333;
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.mode-badge {
+  background: #667eea;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.recommendation-text {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #667eea;
+}
+
+.recommendation-text p {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.validation-box,
+.docs-box {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.validation-box h4,
+.docs-box h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.status {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.note {
+  color: #666;
+  font-size: 0.95em;
+  margin: 10px 0;
+}
+
+.confidence {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.confidence span {
+  font-weight: 600;
+  color: #333;
+  min-width: 90px;
+}
+
+.confidence-bar {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.docs-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.docs-box li {
+  padding: 10px;
+  background: #f5f5f5;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  color: #555;
+  border-left: 3px solid #667eea;
+}
+
+@media (max-width: 768px) {
+  .recommendation-engine {
+    padding: 20px;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .confidence {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
