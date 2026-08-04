@@ -143,10 +143,10 @@ Python AI System (retriever, validator, integrator)
 
 ### Deployment
 
-- **Frontend:** GitHub Pages (`https://ikaera.github.io/applied-ai-petcare-system`)
-- **Backend:** Render.com or Railway (free tier)
+**Frontend:** GitHub Pages  
+**Backend:** Render.com or Railway (free tier)
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for full production setup.
+See [docs/deployment.md](docs/deployment.md) for full production setup.
 
 ---
 
@@ -493,6 +493,92 @@ Result: ⚠ BIASED (0.80 confidence)
 Reason: Over-generalization, missing individual context
 Action: Improve to "Based on Mochi's age and breed, 30 minute walks are appropriate"
 ```
+
+---
+
+## Deployment to Production
+
+### Option 1: React Frontend on GitHub Pages (Free)
+
+**1. Build the React app:**
+```powershell
+cd frontend
+npm run build
+```
+
+**2. Deploy to GitHub Pages:**
+```powershell
+npm run deploy
+```
+
+**Result:** Frontend lives at `https://ikaera.github.io/applied-ai-petcare-system`
+
+**Note:** Update `frontend/package.json` homepage if your repo is different:
+```json
+"homepage": "https://YOUR-USERNAME.github.io/applied-ai-petcare-system"
+```
+
+### Option 2: Flask Backend on Render.com (Free Tier)
+
+**1. Create account:** https://render.com
+
+**2. Connect GitHub repo:**
+- Sign in with GitHub
+- Create new "Web Service"
+- Select your repo
+
+**3. Configure deployment:**
+```
+Build Command: pip install -r requirements.txt
+Start Command: python flask_api.py
+Environment Variables:
+  - GROQ_API_KEY=your_actual_key_here
+```
+
+**4. Deploy:**
+- Render automatically deploys on git push
+- Get your URL: `https://your-app-name.onrender.com`
+
+### Option 3: Backend on Railway.app (Free Tier)
+
+**1. Create account:** https://railway.app
+
+**2. Connect GitHub:**
+- Login with GitHub
+- Create new project from repo
+
+**3. Add environment variable:**
+- Add `GROQ_API_KEY=your_actual_key_here`
+
+**4. Deploy:**
+- Railway auto-deploys
+- Get URL from dashboard
+
+### Update React to Call Deployed Backend
+
+Once backend is deployed, update React to call it:
+
+**In `frontend/src/App.js`:**
+```javascript
+const API_BASE = process.env.REACT_APP_API_URL || 'https://your-app-name.onrender.com';
+```
+
+**Before building, set environment variable:**
+```powershell
+$env:REACT_APP_API_URL="https://your-backend-url.com"
+npm run build
+```
+
+### Complete Deployment Checklist
+
+✅ Backend deployed to Render/Railway  
+✅ Frontend deployed to GitHub Pages  
+✅ React points to deployed backend  
+✅ GROQ_API_KEY set in backend environment  
+✅ CORS enabled in Flask (already configured)  
+✅ Both services accessible from browser  
+
+**Full details:** See [docs/deployment.md](docs/deployment.md)
 
 ---
 
