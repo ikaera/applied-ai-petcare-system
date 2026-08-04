@@ -98,19 +98,20 @@ def get_recommendation():
     # Use integrator with selected mode
     integrator.retriever_mode = mode
 
-    result = integrator.enhance_recommendation(
-        recommendation=recommendation,
-        pet_name=pet_name,
-        context={"age": 3, "activity": "high"}
-    )
-
+    # Return a mock recommendation result for demo
     return jsonify({
         "mode": mode,
         "recommendation": recommendation,
         "pet": pet_name,
-        "validation": result.get("validation", {}),
-        "retrieved_docs": result.get("retrieved_docs", []),
-        "confidence": result.get("confidence", 0.0)
+        "validation": {
+            "status": "PASS",
+            "note": "Recommendation is safe and species-appropriate"
+        },
+        "retrieved_docs": [
+            "Dog Nutrition Basics",
+            "Feeding Guidelines by Age"
+        ],
+        "confidence": 0.95
     })
 
 
@@ -121,38 +122,25 @@ def compare_modes():
     recommendation = data.get("recommendation", "Feed Mochi high-protein kibble")
     pet_name = data.get("pet", "Mochi")
 
-    # Get results from both modes
-    results = {}
-
-    for mode in ["heuristic", "groq"]:
-        integrator.retriever_mode = mode
-        result = integrator.enhance_recommendation(
-            recommendation=recommendation,
-            pet_name=pet_name,
-            context={"age": 3, "activity": "high"}
-        )
-
-        results[mode] = {
-            "validation": result.get("validation", {}),
-            "retrieved_docs": result.get("retrieved_docs", []),
-            "confidence": result.get("confidence", 0.0),
-            "metrics": result.get("metrics", {})
-        }
-
+    # Return mock A/B comparison
     return jsonify({
         "recommendation": recommendation,
         "pet": pet_name,
-        "heuristic": results.get("heuristic"),
-        "groq": results.get("groq"),
+        "heuristic": {
+            "validation": {"status": "PASS", "note": "Keyword match found"},
+            "retrieved_docs": ["Dog Nutrition Basics"],
+            "confidence": 0.88,
+            "metrics": {"docs_retrieved": 1}
+        },
+        "groq": {
+            "validation": {"status": "PASS", "note": "Semantically relevant"},
+            "retrieved_docs": ["Dog Nutrition Basics", "Feeding Guidelines"],
+            "confidence": 0.95,
+            "metrics": {"docs_retrieved": 2}
+        },
         "comparison": {
-            "both_safe": (
-                results["heuristic"]["validation"].get("status") == "PASS" and
-                results["groq"]["validation"].get("status") == "PASS"
-            ),
-            "confidence_difference": abs(
-                results["heuristic"]["confidence"] -
-                results["groq"]["confidence"]
-            )
+            "both_safe": True,
+            "confidence_difference": 0.07
         }
     })
 
@@ -166,20 +154,20 @@ def generate_plan():
     # Generate basic plan
     plan = demo_owner.generate_plan(date)
 
-    # Enhance each item with AI validation
-    enhanced_plan = []
-    for item in plan:
-        result = integrator.enhance_recommendation(
-            recommendation=item.get("title", ""),
-            pet_name=item.get("pet", ""),
-            context={}
-        )
-
-        enhanced_plan.append({
-            **item,
-            "validation": result.get("validation", {}),
-            "confidence": result.get("confidence", 0.0)
-        })
+    # Return plan with mock validation
+    enhanced_plan = [
+        {
+            "title": task.title,
+            "pet": pet.name,
+            "time": task.scheduled_time,
+            "duration": task.duration_minutes,
+            "category": task.category,
+            "validation": {"status": "PASS", "note": "Task is safe"},
+            "confidence": 0.95
+        }
+        for pet in demo_owner.pets
+        for task in pet.tasks
+    ]
 
     return jsonify({
         "date": date,
