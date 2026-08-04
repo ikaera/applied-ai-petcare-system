@@ -31,6 +31,58 @@ PawPal+ combines a scheduling engine with AI features. The system is modular: ea
 - knowledge_base.json (static documents)
 - .env configuration (API keys)
 
+### System Architecture Diagram
+
+```mermaid
+graph TB
+    subgraph "Presentation"
+        UI["React UI<br/>(Task Manager, Recommendations, A/B Test)"]
+    end
+    
+    subgraph "API"
+        API["Flask REST API<br/>(7 endpoints)"]
+    end
+    
+    subgraph "Application Layer"
+        SCHED["Scheduler<br/>(Task Mgmt, Conflicts)"]
+        INTEGRATOR["AI Integrator<br/>(Orchestrator)"]
+        
+        subgraph "AI Components"
+            RETRIEVER["RAG Retriever<br/>(Heuristic + Groq)"]
+            VALIDATOR["Validator<br/>(5 Rules + Bias)"]
+            PLANNER["Agentic Planner<br/>(6-Step Reasoning)"]
+        end
+    end
+    
+    subgraph "Data Layer"
+        KB["Knowledge Base<br/>(15 Documents)"]
+        CONFIG[".env Config<br/>(API Keys)"]
+    end
+    
+    UI -->|axios| API
+    API -->|calls| SCHED
+    API -->|calls| INTEGRATOR
+    
+    SCHED -->|generates plan| INTEGRATOR
+    INTEGRATOR -->|fetches docs| RETRIEVER
+    INTEGRATOR -->|validates| VALIDATOR
+    INTEGRATOR -->|reasons| PLANNER
+    
+    RETRIEVER -->|searches| KB
+    RETRIEVER -->|reads key| CONFIG
+    VALIDATOR -->|returns score| INTEGRATOR
+    PLANNER -->|confidence| INTEGRATOR
+    
+    INTEGRATOR -->|enhanced plan| API
+    API -->|JSON| UI
+    
+    style UI fill:#667eea,stroke:#333,color:#fff
+    style API fill:#764ba2,stroke:#333,color:#fff
+    style SCHED fill:#4CAF50,stroke:#333,color:#fff
+    style INTEGRATOR fill:#FF9800,stroke:#333,color:#fff
+    style KB fill:#2196F3,stroke:#333,color:#fff
+```
+
 ---
 
 ## Components
