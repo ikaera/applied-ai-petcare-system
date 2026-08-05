@@ -1,46 +1,92 @@
-# PawPal+ Applied AI System
+# petcare - Applied AI System
 
-An intelligent pet care task scheduler enhanced with retrieval-augmented generation (RAG), automated validation, and multi-step reasoning.
+An intelligent pet care task scheduler with a user-friendly interface, enhanced with retrieval-augmented generation (RAG), automated validation, and multi-step reasoning.
 
-**Quick Start:** [Installation](#installation) • [Run](#usage) • [Examples](#examples) • [Tests](#testing--evaluation)
+**Quick Start:** [Installation](#installation) • [Web App](#option-3-web-interface) • [Testing](#testing-the-web-app) • [Documentation](#documentation)
 
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [The Problem & Solution](#the-problem--solution)
-- [AI Features](#ai-features)
-- [Dual-Mode Retrieval](#dual-mode-retrieval-new)
+- [Features](#features)
 - [Installation](#installation)
 - [Quick Reference](#quick-reference)
 - [Usage](#usage)
-- [Examples](#examples)
-- [Testing](#testing--evaluation)
+  - [Web Interface](#option-3-web-interface)
+  - [Command-Line](#option-1-command-line-demo)
+  - [Agentic Planning](#option-2-agentic-planning-demo)
+- [Testing the Web App](#testing-the-web-app)
+- [AI Features](#ai-features)
 - [Design Decisions](#design-decisions)
-- [Reflection](#reflection)
 - [Documentation](#documentation)
 
 ---
 
 ## Overview
 
-**PawPal+** is a pet care task scheduler enhanced with AI. It helps pet owners organize multiple pets' care tasks into realistic daily schedules while ensuring recommendations are safe, fair, and knowledge-backed.
+**petcare** is an intelligent pet care task manager that helps pet owners organize multiple pets' care tasks into realistic daily schedules. It combines a beautiful, user-friendly interface with AI-powered recommendations that are safe, fair, and knowledge-backed.
 
-### In Simple Terms
+### Key Features
 
-Think of PawPal+ as a smart assistant that:
-1. **Knows pet care** - Has a knowledge base of 15 pet care documents
-2. **Checks safety** - Validates every recommendation (medical tasks need vet docs)
-3. **Explains decisions** - Shows confidence scores so you know when to trust it
-4. **Handles complexity** - Works with multiple pets and conflicting schedules
+**For Pet Owners:**
+- 📋 Track tasks across multiple pets (walks, feeding, meds, enrichment, grooming)
+- ⏰ Schedule with smart conflict detection
+- 🔔 Set priorities and optimize your daily plan
+- 💾 Automatic data saving and loading
+- 📱 Beautiful, intuitive web interface
 
-**Try it:**
+**For Learning AI/Engineering:**
+- RAG retrieval from 15 curated pet care documents
+- Validation guardrails with confidence scores
+- 6-step agentic planning pipeline
+- Bias detection and fairness checks
+- 83 comprehensive tests (100% passing)
+
+### Try It Now
+
+**Web Interface (Recommended):**
+```bash
+streamlit run app.py
+# Opens at http://localhost:8501
+```
+
+**CLI Demos:**
 ```bash
 python main.py              # See it in action
 python ab_testing.py        # Compare heuristic vs AI modes
 python comparison_demo.py   # See how it ranks documents
 ```
+
+---
+
+## Features
+
+### 🎯 Core Functionality
+- **Multi-Pet Support** - Manage unlimited pets with different species (dogs, cats, other)
+- **Task Management** - Create tasks with title, time, duration, priority, category, and frequency
+- **Smart Scheduling** - Organize tasks with time budgeting and conflict detection
+- **Daily Planning** - Generate optimized schedules respecting your available time
+
+### 🎨 User Interface
+- **Beautiful Design** - Clean, intuitive interface with emoji indicators
+- **Multiple Views** - Sort by time, priority, or filter by pet/status
+- **Real-Time Updates** - Instant feedback on all actions
+- **Help Built-In** - Expandable guides and testing information in the app
+- **Responsive Layout** - Works on different screen sizes
+
+### 💾 Data Management
+- **Auto-Save** - Pets and tasks saved automatically to JSON
+- **Persistent Storage** - Data survives app restarts
+- **Clear Data** - One-click button to start fresh
+- **Scrollable Lists** - Handle many tasks without clutter
+
+### 🤖 AI Features
+- **RAG Retrieval** - Searches 15 pet care documents for recommendations
+- **Validation** - Ensures recommendations are safe and fair
+- **Confidence Scores** - Shows how confident the system is
+- **Conflict Detection** - Warns about overlapping tasks
+- **Plan Optimization** - Fits high-priority tasks first in your available time
 
 ---
 
@@ -184,12 +230,77 @@ python agentic_demo.py
 
 ### Option 3: Web Interface
 
-Interactive web interface for exploring the system:
+Interactive web interface for managing your pet care tasks:
 ```bash
 streamlit run app.py
 ```
 
 Opens in browser at `http://localhost:8501`
+
+**Features:**
+- ✨ Beautiful, intuitive interface
+- 🐾 Manage multiple pets
+- 📝 Create and organize tasks
+- 🔍 Sort by time, priority, or filter
+- ⚠️ Detect scheduling conflicts
+- 📅 Generate optimized daily plans
+- 💾 Automatic data saving
+- 📖 Built-in help and testing guide
+
+---
+
+## Testing the Web App
+
+### Quick Test (5 minutes)
+
+1. **Launch the app:**
+   ```bash
+   streamlit run app.py
+   ```
+
+2. **Add a pet:**
+   - Name: "Max"
+   - Species: "dog"
+   - Click "➕ Add Pet"
+
+3. **Add tasks:**
+   - Title: "Morning Walk" | Time: 08:00 | Priority: High | Duration: 30 min
+   - Title: "Lunch" | Time: 12:00 | Priority: High | Duration: 15 min
+
+4. **Test features:**
+   - ✅ Click "⏰ By Time" tab - tasks sorted by time
+   - ✅ Click "🔴 By Priority" tab - tasks sorted by priority
+   - ✅ Click "🔍 Detect Conflicts" - should show "No conflicts"
+   - ✅ Click "📅 Generate Plan" - shows optimized schedule
+
+5. **Verify data persists:**
+   - Close browser
+   - Reopen `http://localhost:8501`
+   - All pets and tasks should still be there
+
+### Full Testing
+
+For comprehensive testing with detailed scenarios, edge cases, and verification steps:
+- See **TESTING.md** for 20+ detailed test scenarios
+- See **QUICKSTART_TESTING.md** for a quick reference
+- See **VERIFICATION_CHECKLIST.md** for checkbox-based testing
+- Built-in help in the app: Click "📖 Help & Testing Guide"
+
+### What to Verify
+
+| Feature | Expected Result |
+|---------|-----------------|
+| **Add Pet** | Pet appears in table, can add multiple pets |
+| **Add Task** | Task shows with all details (time, priority, category, duration) |
+| **Mark Complete** | Task shows ✅, recurring tasks create next occurrence |
+| **Sort by Time** | Tasks ordered earliest → latest |
+| **Sort by Priority** | High → Medium → Low priority tasks |
+| **Filter** | Can filter by pet and completion status |
+| **Detect Conflicts** | Shows ⚠️ warnings for overlapping tasks |
+| **Find Slot** | Suggests next available time |
+| **Generate Plan** | Shows which tasks fit in available time |
+| **Data Saves** | Restart app and data still there |
+| **UI is Clear** | No overlapping text, emojis display correctly |
 
 ---
 

@@ -1,4 +1,4 @@
-# PawPal+ Demo Day Presentation
+# petcare Demo Day Presentation
 
 **5-7 minute engineer's pitch + Q&A**
 

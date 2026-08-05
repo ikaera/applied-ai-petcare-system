@@ -1,43 +1,232 @@
-# Python
+# ============================================================================
+# Python Development
+# ============================================================================
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+*.so
+*.egg
 *.egg-info/
 dist/
 build/
 .eggs/
+*.whl
+*.egg-info
 
-# Virtual environments
+# Python type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+.pylint.d/
+
+# ============================================================================
+# Virtual Environments
+# ============================================================================
 .venv/
 .venv_new/
 venv/
+env/
+ENV/
+.venv_*
 
-# Testing
+# ============================================================================
+# Testing & Code Coverage
+# ============================================================================
 .pytest_cache/
-.coverage
-htmlcov/
 .tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.trial/
+.nose/
 
-# IDE
+# ============================================================================
+# IDE & Editor Settings
+# ============================================================================
+# IntelliJ
 .idea/
-.vscode/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VSCode (local/personal settings only - workspace settings ignored)
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-workspace
+.history/
+
+# Sublime Text
+.sublime-*
+*.sublime-workspace
+
+# Vim
 *.swp
 *.swo
 *~
+.vim/
 
-# OS
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Other editors
 .DS_Store
-Thumbs.db
 
-# Environment (never commit real API keys)
+# ============================================================================
+# Operating System
+# ============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+*.bak
+
+# ============================================================================
+# Project Configuration & Secrets
+# ============================================================================
+# Environment variables - NEVER commit real secrets
 .env
 .env.local
 .env.*.local
-# .env.example is committed (template with placeholder)
+.env.vault
+# Note: .env.example IS committed as template with placeholder values
 
-# Project-specific
-data.json
-*.log
-reasoning_traces.json
-
+# Project instructions (local to developer)
 CLAUDE.md
+
+# ============================================================================
+# Frontend Development (Node.js/React)
+# ============================================================================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/build/
+frontend/.cache/
+frontend/.parcel-cache
+frontend/coverage/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/.env.local
+frontend/.env.*.local
+
+# ============================================================================
+# Runtime & User Data
+# ============================================================================
+# User data that changes at runtime
+data.json
+
+# Log files
+*.log
+*.log.*
+logs/
+planning_errors.log
+reasoning_traces.json
+debug.log
+
+# ============================================================================
+# Caching & Temporary Files
+# ============================================================================
+# Streamlit
+.streamlit/
+.streamlit_cache/
+
+# General cache
+.cache/
+*.cache
+tmp/
+temp/
+
+# ============================================================================
+# Compiled Output & Distribution
+# ============================================================================
+# Compiled Python
+*.pyc
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ============================================================================
+# Documentation
+# ============================================================================
+site/
+docs/_build/
+.sphinx/
+
+# ============================================================================
+# Mac-specific
+# ============================================================================
+.AppleDouble
+.LSOverride
+._*
+.apdisk
+
+# ============================================================================
+# Windows-specific
+# ============================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================================================
+# Development tools
+# ============================================================================
+# IPython
+.ipynb_checkpoints/
+.ipython/
+
+# Jupyter Notebook
+.jupyter/
+*.ipynb
+jupyter_notebook_config.json
+
+# pdoc
+htmlcov/
+
+# pyenv
+.python-version
+
+# Direnv
+.envrc
+.direnvrc
+
+# ============================================================================
+# Local developer notes (not shared)
+# ============================================================================
+.local/
+local_notes.txt
+development_notes.md
+personal_settings.json

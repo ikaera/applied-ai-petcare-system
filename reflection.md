@@ -1,4 +1,4 @@
-# PawPal+ Project Reflection
+# petcare Project Reflection
 
 ## 1. System Design
 

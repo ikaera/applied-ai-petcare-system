@@ -8,6 +8,19 @@
 
 ---
 
+## 📋 Table of Contents
+
+- [Phase 1: RAG Retriever](#phase-1-rag-retriever-implementation)
+- [Phase 2: Validation Guardrails](#phase-2-validation-guardrails)
+- [Phase 3: Agentic Planner](#phase-3-agentic-planner)
+- [Phase 4: Integration & Testing](#phase-4-integration--testing)
+- [Phase 5: Dual-Mode Retrieval](#phase-5-dual-mode-retrieval)
+- [Reasoning Traces](#reasoning-traces)
+- [Design Trade-Offs](#design-trade-offs)
+- [Future Enhancements](#future-enhancements)
+
+---
+
 ## Phase 1: RAG Retriever Implementation
 
 ### Design Decision: Keyword-Based vs. Vector Embeddings
